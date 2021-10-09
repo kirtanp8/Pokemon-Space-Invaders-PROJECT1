@@ -1,12 +1,16 @@
 function init() {
 
-
-//axis 
 let index = 115;
 let shotPosition = 0;
-let score = 0;
-
+let score = 0
+let level = 1; 
 /// Create Grid
+
+// function LevelOne {
+if (score >= 899) { 
+  console.log("level one complete")
+} else {
+
 function createGrid() {
 array = []
   for (let i = 0; i < 121; i++) {
@@ -25,9 +29,10 @@ createGrid()
 
 ///// 
 const allCells = document.querySelectorAll('.grid div')
+let scoreAnnouncement = document.querySelector('.score')
 let enemyIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
 let enemyDestroyed = []
-
+   
 
   
 
@@ -64,7 +69,6 @@ function removeCharizard(index) {
 playerIndex.classList.remove('goodPokemon')
 }
 
-
 function addBlastoise() {
   for (let i = 0; i < enemyIndex.length; i++) {
     if (!enemyDestroyed.includes(i + 1)) {
@@ -73,7 +77,6 @@ function addBlastoise() {
   }
   return
 }
-
 function removeBlastoise() {
  for (let i = 0; i < enemyIndex.length; i++) {
    if (!enemyDestroyed.includes(i + 1)) {
@@ -110,6 +113,9 @@ function moveRight() {
  addBlastoise()
 }
 
+function updateScore() {
+  return scoreAnnouncement.innerHTML   = "SCORE:" + score
+}
 
 function blastoiseMove() {
 switch(enemyIndex[0]) {
@@ -152,10 +158,12 @@ switch(enemyIndex[0]) {
  return moveRight()
   break;
   default:
-    console.log("Do Nothing")
+    clearInterval(levelOneCommence)
 }
 }
 //  
+
+
 
 function fireShot() {
   let currentPositionOfBullet = (shotPosition)
@@ -167,8 +175,8 @@ function fireShot() {
   if (allCells[currentPositionOfBullet].classList.contains('evilPokemon')) {
     let defeatedEnemy = enemyIndex.indexOf(currentPositionOfBullet)
     enemyDestroyed.push(defeatedEnemy + 1)
-    console.log(enemyDestroyed)
     score += 100
+    updateScore()
     allCells[currentPositionOfBullet].classList.remove('evilPokemon')       
 } else if(currentPositionOfBullet >= 0) {
        allCells[currentPositionOfBullet].classList.remove('flame')
@@ -177,7 +185,14 @@ function fireShot() {
  }, 200 )
  
   }     
-setInterval(blastoiseMove, 2000)
+let levelOneCommence = setInterval(blastoiseMove, 500 )
 
+
+
+}
+//}
+
+
+console.log("Level One Complete")
 }
 window.addEventListener('DOMContentLoaded', init)
