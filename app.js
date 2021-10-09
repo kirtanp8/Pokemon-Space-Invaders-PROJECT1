@@ -6,6 +6,9 @@ let score = 0
 let level = 1; 
 /// Create Grid
 
+
+
+
 // function LevelOne {
 if (score >= 899) { 
   console.log("level one complete")
@@ -17,6 +20,7 @@ array = []
     array.push(i)
 }
 const grid = document.querySelector('.grid')
+
 array.forEach((className, i) => {
   const newCell = document.createElement('div')
   grid.appendChild(newCell)
@@ -29,6 +33,7 @@ createGrid()
 
 ///// 
 const allCells = document.querySelectorAll('.grid div')
+const levelUpdate = document.querySelector('.level')
 let scoreAnnouncement = document.querySelector('.score')
 let enemyIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
 let enemyDestroyed = []
@@ -117,6 +122,10 @@ function updateScore() {
   return scoreAnnouncement.innerHTML   = "SCORE:" + score
 }
 
+function levelAnnounce() {
+levelUpdate.innerHTML = "level:" + level
+}
+
 function blastoiseMove() {
 switch(enemyIndex[0]) {
   case 0:
@@ -186,13 +195,18 @@ function fireShot() {
  
   }     
 let levelOneCommence = setInterval(blastoiseMove, 500 )
-
-
-
 }
+
 //}
 
 
 console.log("Level One Complete")
 }
+
+// if (score === 900) {
+//   function levelTwo() {
+
+//   }
+//}
+
 window.addEventListener('DOMContentLoaded', init)
