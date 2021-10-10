@@ -13,12 +13,12 @@ let level = 1;
 if (score >= 899) { 
   console.log("level one complete")
 } else {
-
 function createGrid() {
-array = []
-  for (let i = 0; i < 121; i++) {
-    array.push(i)
+   array = []
+   for (let i = 0; i < 121; i++) {
+  array.push(i)
 }
+
 const grid = document.querySelector('.grid')
 
 array.forEach((className, i) => {
@@ -195,18 +195,143 @@ function fireShot() {
  
   }     
 let levelOneCommence = setInterval(blastoiseMove, 500 )
+
+// bracket before the else 
 }
 
-//}
+
+// console.log("Level One Complete")
 
 
-console.log("Level One Complete")
+//    
+
+function levelTwo() {
+  //Level 2
+let backwardsCharmanderIndex = [12, 13, 15, 16, 18, 20, 34, 37, 40, 42, 55, 57, 58, 61, 63, 64, 78, 79, 82, 83, 84, 99, 100, 102, 103, 106, 108]
+let charmanderForwardsIndex = [11, 14, 17, 19, 35, 36, 38, 39, 41 , 43, 56, 59, 60, 62, 80, 81, 85, 86, 87, 101, 104, 105, 107]
+let motherCharizard = 110
+let moveDownOptions = [10, 21, 22, 33, 54, 65, 66, 77, 98, 109]
+let moveUpOptions = [21, 32, 33, 44, 65, 76, 77, 88, 109]
+let noGoZone = [21, 33, 65, 77, 109]
+
+
+function createGridLevel2() {
+array = []
+  for (let i = 0; i < 121; i++) {
+    array.push(i)
+}
+const grid = document.querySelector('.grid')
+array.forEach((className, i) => {
+  const newCell = document.createElement('div')
+  grid.appendChild(newCell)
+  newCell.classList.add(className)
+  newCell.innerHTML = i;
+})
 }
 
-// if (score === 900) {
-//   function levelTwo() {
 
-//   }
-//}
 
+
+createGridLevel2() 
+
+
+const allCellsLevel2 = document.querySelectorAll('.grid div')
+
+
+function addCharizardLevel2(indexLevel2) {
+let playerIndexLevel2 = allCellsLevel2[indexLevel2]
+playerIndexLevel2.classList.add('goodPokemon')
+}
+
+
+function removeCharizardLevel2(indexLevel2) {
+  playerIndexLevel2 = allCellsLevel2[indexLevel2]
+playerIndexLevel2.classList.remove('goodPokemon')
+}
+
+removeCharizardLevel2(indexLevel2)
+addCharizardLevel2(indexLevel2)
+
+function handleKeyUpLvl2(event) {
+    const key = event.keyCode
+    if (key === 37 && indexLevel2 % 11 !== 0 && indexLevel2 !== 111 && !noGoZone.includes(indexLevel2)) {
+  removeCharizardLevel2(indexLevel2)
+    indexLevel2--
+    }
+  else if (key === 39 && (indexLevel2 + 1) % 11 !== 0 && !noGoZone.includes(indexLevel2)) {
+  removeCharizardLevel2(indexLevel2)
+   indexLevel2++
+  } 
+  else if (key === 40 && moveDownOptions.includes(indexLevel2) === true) {
+    removeCharizardLevel2(indexLevel2)
+    indexLevel2 += 11
+  }
+  else if (key === 38 && moveUpOptions.includes(indexLevel2) === true) {
+    removeCharizardLevel2(indexLevel2)
+    indexLevel2 -= 11
+  } else {
+    return
+  }
+  addCharizardLevel2(indexLevel2)
+  }
+
+
+
+
+for(let i = 0; i < backwardsCharmanderIndex.length; i++) {
+  allCellsLevel2[backwardsCharmanderIndex[i]].classList.add('charmanderBackwards')
+}
+
+for(let i = 0; i < charmanderForwardsIndex.length; i++) {
+  allCellsLevel2[charmanderForwardsIndex[i]].classList.add('charmanderForwards')
+}
+
+
+
+
+function faceBackwardsShot() {
+let randomBackwards = backwardsCharmanderIndex[Math.floor(Math.random()* backwardsCharmanderIndex.length)]
+let temp = randomBackwards
+allCellsLevel2[temp - 11].classList.add('flame')
+setTimeout(() => allCellsLevel2[temp - 11].classList.remove('flame'), 500)
+gameOver()
+}
+
+function faceForwardsShot() {
+  let randomForwards = charmanderForwardsIndex[Math.floor(Math.random()* charmanderForwardsIndex.length)]
+  let tempForward = randomForwards
+  allCellsLevel2[tempForward + 11].classList.add('flame')
+  setTimeout(() => allCellsLevel2[tempForward + 11].classList.remove('flame'), 500)
+  gameOver()
+}
+
+setInterval(faceForwardsShot, 700)
+setInterval(faceForwardsShot, 700)
+setInterval(faceForwardsShot, 700)
+setInterval(faceBackwardsShot, 700)
+setInterval(faceBackwardsShot, 700)
+setInterval(faceBackwardsShot, 700)
+
+allCellsLevel2[motherCharizard].classList.add('motherCharizard')
+
+if (indexLevel2 > 110) {
+  console.log("Time for Level3?")
+} 
+
+function gameOver() {
+if(allCellsLevel2[indexLevel2].classList.contains('flame')) {
+console.log("Game Over")
+}
+}
+ document.addEventListener('keyup', handleKeyUpLvl2)
+} 
+
+
+// level 2 Bracket
+
+// if (score >= 900) {
+//   return levelTwo()
+// }  
+
+}
 window.addEventListener('DOMContentLoaded', init)

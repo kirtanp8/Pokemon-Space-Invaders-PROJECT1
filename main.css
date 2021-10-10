@@ -89,5 +89,20 @@ header {
   background-image: url("flame.png");
 }
 
-.destroyed {
+.grid div.charmanderBackwards {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/back-normal/charmander.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid div.charmanderForwards {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid div.motherCharizard {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/back-shiny/charizard.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
