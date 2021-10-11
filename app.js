@@ -25,9 +25,6 @@ function init() {
       }
     }
 
-
-
-
 let index = 115  
 // function call to create grid
 function createGrid() {
@@ -67,23 +64,43 @@ function handleKeyUp(event) {
 
  function fireShot() {
 let currentPositionOfBullet = shotPosition
-setInterval(() => {
-  if (currentPositionOfBullet >=  11) {
+let x = setInterval(() => {
       allCells[currentPositionOfBullet].classList.remove('flame')
       currentPositionOfBullet -= 11
       allCells[currentPositionOfBullet].classList.add('flame')
-  }
-  if (allCells[currentPositionOfBullet].classList.contains('evilPokemon') === true) {
-    let defeatedEnemy = enemyIndex.indexOf(currentPositionOfBullet)
+
+if(allCells[currentPositionOfBullet].classList.contains('gengar')) {
+    let defeatedEnemy = thirdRowLevelEnemy.indexOf(currentPositionOfBullet)
     enemyDestroyed.push(defeatedEnemy + 1)
-    allCells[currentPositionOfBullet].classList.remove('evilPokemon')
-    charizard.pointIncrease()      
+    allCells[currentPositionOfBullet].classList.remove('gengar')
+    setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 600)
+    charizard.pointIncrease() 
+    clearInterval(x)
+}
+
+ else if(allCells[currentPositionOfBullet].classList.contains('blastoise')) {
+    let defeatedEnemy = secondLevelEnemy.indexOf(currentPositionOfBullet)
+    enemyDestroyed.push(defeatedEnemy + 1)
+    allCells[currentPositionOfBullet].classList.remove('blastoise')  
+    charizard.pointIncrease()   
+    setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 600)
+      clearInterval(x)
+  }
+else if (allCells[currentPositionOfBullet].classList.contains('dragonite')) {
+    let defeatedEnemy = firstRowLevelEnemy.indexOf(currentPositionOfBullet)
+    enemyDestroyed.push(defeatedEnemy + 1)
+    allCells[currentPositionOfBullet].classList.remove('dragonite')
+   allCells[currentPositionOfBullet].classList.remove('flame')
+    charizard.pointIncrease()
+  setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 600) 
+    clearInterval(x)
 } 
+
+
 if (currentPositionOfBullet > 0) {
     allCells[currentPositionOfBullet].classList.remove('flame')
     allCells[currentPositionOfBullet].classList.add('flame')
-}
-
+} 
 if (currentPositionOfBullet <= 10) {
        allCells[currentPositionOfBullet].classList.remove('flame')
 }
@@ -214,10 +231,88 @@ function gengarDrop() {
     },200)
 }
 
-
 setInterval(gengarDrop, 1000)
 setInterval(blastoiseDrop, 300)
 setInterval(dragoniteFire, 600)
+
+function moveDragoniteLeft() {
+   removeFirstRowEnemy()
+    for (let i = 0; i < firstRowLevelEnemy.length; i++) {
+    firstRowLevelEnemy[i] -= 1
+    }
+    addFirstRowLevelEnemy()
+}
+
+function moveDragoniteRight() {
+   removeFirstRowEnemy()
+    for (let i = 0; i < firstRowLevelEnemy.length; i++) {
+    firstRowLevelEnemy[i] += 1
+    }
+    addFirstRowLevelEnemy()
+}
+
+function moveBlastoiseLeft() {
+  removeSecondRowEnemy() 
+  for (let i = 0; i < secondLevelEnemy.length; i++) {
+    secondLevelEnemy[i] -= 1
+    }
+  addSecondLevelEnemy()
+}
+
+function moveBlastoiseRight() {
+  removeSecondRowEnemy() 
+  for (let i = 0; i < secondLevelEnemy.length; i++) {
+    secondLevelEnemy[i] += 1
+    }
+  addSecondLevelEnemy()
+}
+moveBlastoiseRight()
+
+
+function gengarMoveLeft() {
+  removeThirdRowEnemy()
+   for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
+    thirdRowLevelEnemy[i] -= 1
+    }
+   addThirdRowLevelEnemy()
+}
+
+function gengarMoveRight() {
+  removeThirdRowEnemy()
+  for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
+    thirdRowLevelEnemy[i] += 1
+    }
+  addThirdRowLevelEnemy()
+}
+
+
+
+function moveEnemiesFirstRow() {
+  switch(firstRowLevelEnemy[0]){
+    case 0:
+      moveDragoniteRight()
+      break;
+    case 1:
+      moveDragoniteLeft()
+      break;
+  }
+  return
+}
+
+
+function secondRowEnemyMovement(){
+  switch(secondLevelEnemy[0]){
+    case 2:
+      moveBlastoiseLeft()
+      break;
+    case 1:
+      moveBlastoiseRight()
+      break;
+  }
+  return
+}
+setInterval(secondRowEnemyMovement, 300)
+
 }
 // 
 window.addEventListener('DOMContentLoaded', init)
