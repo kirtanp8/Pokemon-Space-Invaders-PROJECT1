@@ -1,24 +1,40 @@
 function init() {
 
-let index = 115;
-let shotPosition = 0;
-let score = 0
-let level = 1; 
-/// Create Grid
+  let firstRowLevelEnemy =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  let secondLevelEnemy =    [12, 13, 14, 15, 16, 17, 18, 19, 20]
+  let thirdRowLevelEnemy = [23, 24, 25, 26, 27, 28, 29, 30, 31]
+  let enemyDestroyed = []
+  // charizard Object 
+  let blastoisePosition 
+  let gengarPosition
+  
+  
+  
+  
+  let charizard = {
+    // could potentially use a progress bar here with health points.  
+      lives: 3, 
+      points: 0,
+     get healthPointDrop() {
+        return this.lives--
+      },
+
+     get pointIncrease() {
+        this.points += 100
+        return
+      }
+    }
 
 
 
 
-// function LevelOne {
-if (score >= 899) { 
-  console.log("level one complete")
-} else {
+let index = 115  
+// function call to create grid
 function createGrid() {
-   array = []
-   for (let i = 0; i < 121; i++) {
-  array.push(i)
+array = []
+  for (let i = 0; i < 121; i++) {
+    array.push(i)
 }
-
 const grid = document.querySelector('.grid')
 
 array.forEach((className, i) => {
@@ -28,18 +44,9 @@ array.forEach((className, i) => {
   // newCell.innerHTML = i;
 })
 }
-// function call to create grid
 createGrid()
 
-///// 
 const allCells = document.querySelectorAll('.grid div')
-const levelUpdate = document.querySelector('.level')
-let scoreAnnouncement = document.querySelector('.score')
-let enemyIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9] 
-let enemyDestroyed = []
-   
-
-  
 
 function handleKeyUp(event) {
     const key = event.keyCode
@@ -58,9 +65,30 @@ function handleKeyUp(event) {
   }
  document.addEventListener('keyup', handleKeyUp)
 
+ function fireShot() {
+let currentPositionOfBullet = shotPosition
+setInterval(() => {
+  if (currentPositionOfBullet >=  11) {
+      allCells[currentPositionOfBullet].classList.remove('flame')
+      currentPositionOfBullet -= 11
+      allCells[currentPositionOfBullet].classList.add('flame')
+  }
+  if (allCells[currentPositionOfBullet].classList.contains('evilPokemon') === true) {
+    let defeatedEnemy = enemyIndex.indexOf(currentPositionOfBullet)
+    enemyDestroyed.push(defeatedEnemy + 1)
+    allCells[currentPositionOfBullet].classList.remove('evilPokemon')
+    charizard.pointIncrease()      
+} 
+if (currentPositionOfBullet > 0) {
+    allCells[currentPositionOfBullet].classList.remove('flame')
+    allCells[currentPositionOfBullet].classList.add('flame')
+}
 
-// add Charizard to Game
-
+if (currentPositionOfBullet <= 10) {
+       allCells[currentPositionOfBullet].classList.remove('flame')
+}
+}, 200)
+}    
 
 function addCharizard(index) {
 let playerIndex = allCells[index]
@@ -74,264 +102,122 @@ function removeCharizard(index) {
 playerIndex.classList.remove('goodPokemon')
 }
 
-function addBlastoise() {
-  for (let i = 0; i < enemyIndex.length; i++) {
+  function addFirstRowLevelEnemy() {
+  for (let i = 0; i < firstRowLevelEnemy.length; i++) {
     if (!enemyDestroyed.includes(i + 1)) {
-     allCells[enemyIndex[i]].classList.add('evilPokemon')
+   allCells[firstRowLevelEnemy[i]].classList.add('dragonite')
+    }
+  }
+  return 
+}
+  function addSecondLevelEnemy() {
+  for (let i = 0; i < secondLevelEnemy.length; i++) {
+    if (!enemyDestroyed.includes(i + 1)) {
+   allCells[secondLevelEnemy[i]].classList.add('blastoise')
+    }
+  }
+  return
+  }
+
+
+    function addThirdRowLevelEnemy() {
+  for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
+     if (!enemyDestroyed.includes(i + 1)) {
+   allCells[thirdRowLevelEnemy[i]].classList.add('gengar')
     }
   }
   return
 }
-function removeBlastoise() {
- for (let i = 0; i < enemyIndex.length; i++) {
+
+
+  function removeFirstRowEnemy() {
+ for (let i = 0; i < firstRowLevelEnemy.length; i++) {
    if (!enemyDestroyed.includes(i + 1)) {
-    allCells[enemyIndex[i]].classList.remove('evilPokemon')
+    allCells[firstRowLevelEnemy[i]].classList.remove('dragonite')
    }
   }
   return
 }
-  
-removeBlastoise()
-addBlastoise()
 
-function moveLeft() { 
-    removeBlastoise()
-    for (let i = 0; i < enemyIndex.length; i++) {
-    enemyIndex[i] -= 1
-  }  
-    addBlastoise()
+  function removeSecondRowEnemy() {
+ for (let i = 0; i < secondLevelEnemy.length; i++) {
+   if (!enemyDestroyed.includes(i + 1)) {
+    allCells[secondLevelEnemy[i]].classList.remove('blastoise')
+   }
+  }
+  return
+  }
+function removeThirdRowEnemy() {
+ for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
+   if (!enemyDestroyed.includes(i + 1)) {
+    allCells[thirdRowLevelEnemy[i]].classList.remove('gengar')
+   }
+  }
+  return 
+} 
+
+removeFirstRowEnemy()
+removeSecondRowEnemy()
+removeThirdRowEnemy()
+addFirstRowLevelEnemy()
+addSecondLevelEnemy()
+addThirdRowLevelEnemy()
+
+function dragoniteFire() {
+ let dragoniteBulletPosition = firstRowLevelEnemy[Math.floor(Math.random() * firstRowLevelEnemy.length)]
+ setInterval(() => {
+      allCells[dragoniteBulletPosition].classList.remove('dragoniteflame')
+      dragoniteBulletPosition += 11
+      allCells[dragoniteBulletPosition].classList.add('dragoniteflame')
+     if (allCells[dragoniteBulletPosition].classList.contains('goodPokemon')) {
+         charizard.healthPointDrop()
+      setTimeout(allCells[dragoniteBulletPosition].classList.remove('dragoniteflame'), 300)
+     }
+    if(dragoniteBulletPosition > 120) {
+     allCells[dragoniteBulletPosition].classList.remove('dragoniteflame')
+     return
+      }
+    },200) 
 }
 
-function moveDown() {
-    removeBlastoise()
-     for (let i = 0; i < enemyIndex.length; i++) {
-    enemyIndex[i] += 11
-}
- addBlastoise()
-}
-
-function moveRight() {
-  removeBlastoise() 
-  for (let i = 0; i < enemyIndex.length; i++) {
-  enemyIndex[i] += 1
- }
- addBlastoise()
-}
-
-function updateScore() {
-  return scoreAnnouncement.innerHTML   = "SCORE:" + score
+function blastoiseDrop() {
+ let blastoiseDropPosition = secondLevelEnemy[Math.floor(Math.random() * firstRowLevelEnemy.length)]
+ setInterval(() => {
+      allCells[blastoiseDropPosition].classList.remove('water')
+      blastoiseDropPosition += 11
+      allCells[blastoiseDropPosition].classList.add('water'  )
+     if (allCells[blastoiseDropPosition].classList.contains('goodPokemon')) {
+         charizard.healthPointDrop()
+      setTimeout(allCells[blastoiseDropPosition].classList.remove('water'), 300)
+     }
+    if(blastoiseDropPosition > 120) {
+     allCells[blastoiseDropPosition].classList.remove('water')
+     return
+      }
+    },200)
 }
 
-function levelAnnounce() {
-levelUpdate.innerHTML = "level:" + level
-}
-
-function blastoiseMove() {
-switch(enemyIndex[0]) {
-  case 0:
-  case 13:
-  case 22:
-  case 35:
-  case 44:
-  case 57:
-  case 66:
-  case 79:
-  case 88:
-  case 101:
-      return moveDown()
-      break;
-  case 1:
-  case 23:
-  case 24:
-  case 45:
-  case 46:
-  case 67:
-  case 68:
-  case 89:
-  case 90:
-  case 91:
-  case 111:
-  case 112:
-      return moveLeft()
-      break;
-  case 11:
-  case 12:
-  case 33:
-  case 34:
-  case 55:
-  case 56:
-  case 77:
-  case 78:
-  case 99:
-  case 100:
- return moveRight()
-  break;
-  default:
-    clearInterval(levelOneCommence)
-}
-}
-//  
-
-
-
-function fireShot() {
-  let currentPositionOfBullet = (shotPosition)
-   setInterval(() => {
-      allCells[currentPositionOfBullet].classList.remove('flame')
-      currentPositionOfBullet -= 11
-      allCells[currentPositionOfBullet].classList.add('flame')
-
-  if (allCells[currentPositionOfBullet].classList.contains('evilPokemon')) {
-    let defeatedEnemy = enemyIndex.indexOf(currentPositionOfBullet)
-    enemyDestroyed.push(defeatedEnemy + 1)
-    score += 100
-    updateScore()
-    allCells[currentPositionOfBullet].classList.remove('evilPokemon')       
-} else if(currentPositionOfBullet >= 0) {
-       allCells[currentPositionOfBullet].classList.remove('flame')
-        allCells[currentPositionOfBullet].classList.add('flame')
-}
- }, 200 )
- 
-  }     
-let levelOneCommence = setInterval(blastoiseMove, 500 )
-
-// bracket before the else 
-}
-
-
-// console.log("Level One Complete")
-
-
-//    
-
-function levelTwo() {
-  //Level 2
-let backwardsCharmanderIndex = [12, 13, 15, 16, 18, 20, 34, 37, 40, 42, 55, 57, 58, 61, 63, 64, 78, 79, 82, 83, 84, 99, 100, 102, 103, 106, 108]
-let charmanderForwardsIndex = [11, 14, 17, 19, 35, 36, 38, 39, 41 , 43, 56, 59, 60, 62, 80, 81, 85, 86, 87, 101, 104, 105, 107]
-let motherCharizard = 110
-let moveDownOptions = [10, 21, 22, 33, 54, 65, 66, 77, 98, 109]
-let moveUpOptions = [21, 32, 33, 44, 65, 76, 77, 88, 109]
-let noGoZone = [21, 33, 65, 77, 109]
-
-
-function createGridLevel2() {
-array = []
-  for (let i = 0; i < 121; i++) {
-    array.push(i)
-}
-const grid = document.querySelector('.grid')
-array.forEach((className, i) => {
-  const newCell = document.createElement('div')
-  grid.appendChild(newCell)
-  newCell.classList.add(className)
-  newCell.innerHTML = i;
-})
-}
-
-
-
-
-createGridLevel2() 
-
-
-const allCellsLevel2 = document.querySelectorAll('.grid div')
-
-
-function addCharizardLevel2(indexLevel2) {
-let playerIndexLevel2 = allCellsLevel2[indexLevel2]
-playerIndexLevel2.classList.add('goodPokemon')
-}
-
-
-function removeCharizardLevel2(indexLevel2) {
-  playerIndexLevel2 = allCellsLevel2[indexLevel2]
-playerIndexLevel2.classList.remove('goodPokemon')
-}
-
-removeCharizardLevel2(indexLevel2)
-addCharizardLevel2(indexLevel2)
-
-function handleKeyUpLvl2(event) {
-    const key = event.keyCode
-    if (key === 37 && indexLevel2 % 11 !== 0 && indexLevel2 !== 111 && !noGoZone.includes(indexLevel2)) {
-  removeCharizardLevel2(indexLevel2)
-    indexLevel2--
+function gengarDrop() {
+ let gengarDropPosition = secondLevelEnemy[Math.floor(Math.random() * firstRowLevelEnemy.length)]
+ setInterval(() => {
+      allCells[gengarDropPosition].classList.remove('purpleball')
+      gengarDropPosition += 11
+      allCells[gengarDropPosition].classList.add('purpleball')
+     if (allCells[gengarDropPosition].classList.contains('goodPokemon')) {
+         charizard.healthPointDrop()
+      setTimeout(allCells[gengarDropPosition].classList.remove('purpleball'), 300)
+     }
+    if(gengarDropPosition > 120) {
+     allCells[gengarDropPosition].classList.remove('purpleball')
+      return  
     }
-  else if (key === 39 && (indexLevel2 + 1) % 11 !== 0 && !noGoZone.includes(indexLevel2)) {
-  removeCharizardLevel2(indexLevel2)
-   indexLevel2++
-  } 
-  else if (key === 40 && moveDownOptions.includes(indexLevel2) === true) {
-    removeCharizardLevel2(indexLevel2)
-    indexLevel2 += 11
-  }
-  else if (key === 38 && moveUpOptions.includes(indexLevel2) === true) {
-    removeCharizardLevel2(indexLevel2)
-    indexLevel2 -= 11
-  } else {
-    return
-  }
-  addCharizardLevel2(indexLevel2)
-  }
-
-
-
-
-for(let i = 0; i < backwardsCharmanderIndex.length; i++) {
-  allCellsLevel2[backwardsCharmanderIndex[i]].classList.add('charmanderBackwards')
-}
-
-for(let i = 0; i < charmanderForwardsIndex.length; i++) {
-  allCellsLevel2[charmanderForwardsIndex[i]].classList.add('charmanderForwards')
+    },200)
 }
 
 
-
-
-function faceBackwardsShot() {
-let randomBackwards = backwardsCharmanderIndex[Math.floor(Math.random()* backwardsCharmanderIndex.length)]
-let temp = randomBackwards
-allCellsLevel2[temp - 11].classList.add('flame')
-setTimeout(() => allCellsLevel2[temp - 11].classList.remove('flame'), 500)
-gameOver()
+setInterval(gengarDrop, 1000)
+setInterval(blastoiseDrop, 300)
+setInterval(dragoniteFire, 600)
 }
-
-function faceForwardsShot() {
-  let randomForwards = charmanderForwardsIndex[Math.floor(Math.random()* charmanderForwardsIndex.length)]
-  let tempForward = randomForwards
-  allCellsLevel2[tempForward + 11].classList.add('flame')
-  setTimeout(() => allCellsLevel2[tempForward + 11].classList.remove('flame'), 500)
-  gameOver()
-}
-
-setInterval(faceForwardsShot, 700)
-setInterval(faceForwardsShot, 700)
-setInterval(faceForwardsShot, 700)
-setInterval(faceBackwardsShot, 700)
-setInterval(faceBackwardsShot, 700)
-setInterval(faceBackwardsShot, 700)
-
-allCellsLevel2[motherCharizard].classList.add('motherCharizard')
-
-if (indexLevel2 > 110) {
-  console.log("Time for Level3?")
-} 
-
-function gameOver() {
-if(allCellsLevel2[indexLevel2].classList.contains('flame')) {
-console.log("Game Over")
-}
-}
- document.addEventListener('keyup', handleKeyUpLvl2)
-} 
-
-
-// level 2 Bracket
-
-// if (score >= 900) {
-//   return levelTwo()
-// }  
-
-}
+// 
 window.addEventListener('DOMContentLoaded', init)

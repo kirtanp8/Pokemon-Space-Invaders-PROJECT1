@@ -71,6 +71,7 @@ header {
 .grid div {
   height: 9.09%;
   width: 9.09%;
+  color: white;
 }
 
 .grid div.goodPokemon {
@@ -86,7 +87,10 @@ header {
 }
 
 .flame {
-  background-image: url("flame.png");
+  background-image: url("https://c.tenor.com/VUH3A7tK-qgAAAAj/dm4uz3-foekoe.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
 }
 
 .grid div.charmanderBackwards {
@@ -105,4 +109,190 @@ header {
   background-image: url("https://img.pokemondb.net/sprites/black-white/anim/back-shiny/charizard.gif");
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.grid div.blastoise {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/blastoise.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.grid div.dragonite {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/dragonite.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.grid div.gengar {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/gengar.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.water {
+  background-image: url("https://media4.giphy.com/media/H1S4ztIWxQLoWrRAbr/giphy.gif?cid=ecf05e479lzv7o9q5q75r153k0zx89ommbkoa1pxcdwb2k8s&rid=giphy.gif&ct=g");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.purpleball {
+  background-image: url("https://media0.giphy.com/media/9rtpOmC5Vijp2f9xYe/giphy.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dragoniteflame {
+  background-image: url("https://c.tenor.com/I0w9VW2gaL8AAAAi/lightning-bolt-thunder.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+* {
+  box-sizing: border-box;
+  font-family: "Press Start 2P", cursive, Monaco;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background-image: url("./Background.jpg");
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box,
+.box2 {
+  border: 2px solid white;
+  width: 23%;
+  color: white;
+}
+
+.top-half-one {
+  height: 50%;
+}
+
+.bottom-half-one {
+  height: 50%;
+}
+
+.main {
+  display: flex;
+}
+
+header {
+  color: red;
+  margin: auto;
+
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.grid-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.2px solid red;
+  width: 50%;
+  margin: auto;
+  height: 80vh;
+}
+.grid {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.grid div {
+  height: 9.09%;
+  width: 9.09%;
+  color: white;
+}
+
+.grid div.goodPokemon {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/back-normal/charizard.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid div.evilPokemon {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/blastoise.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.flame {
+  background-image: url("https://c.tenor.com/VUH3A7tK-qgAAAAj/dm4uz3-foekoe.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+
+.grid div.charmanderBackwards {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/back-normal/charmander.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid div.charmanderForwards {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid div.motherCharizard {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/back-shiny/charizard.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.grid div.blastoise {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/blastoise.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.grid div.dragonite {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/dragonite.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.grid div.gengar {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/gengar.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.water {
+  background-image: url("https://media4.giphy.com/media/H1S4ztIWxQLoWrRAbr/giphy.gif?cid=ecf05e479lzv7o9q5q75r153k0zx89ommbkoa1pxcdwb2k8s&rid=giphy.gif&ct=g");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.purpleball {
+  background-image: url("https://media0.giphy.com/media/9rtpOmC5Vijp2f9xYe/giphy.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dragoniteflame {
+  background-image: url("https://c.tenor.com/I0w9VW2gaL8AAAAi/lightning-bolt-thunder.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
