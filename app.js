@@ -1,5 +1,6 @@
 function init() {
 
+  
   let firstRowLevelEnemy =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
   let secondLevelEnemy =    [12, 13, 14, 15, 16, 17, 18, 19, 20]
   let thirdRowLevelEnemy = [23, 24, 25, 26, 27, 28, 29, 30, 31]
@@ -8,15 +9,15 @@ function init() {
   let blastoisePosition 
   let gengarPosition
   
-  
-  
-  
-  let charizard = {
+  let player = {
     // could potentially use a progress bar here with health points.  
-      lives: 3, 
+      healthPoints: 100, 
       points: 0,
-     get healthPointDrop() {
-        return this.lives--
+    healthPointDrop() {
+       if (this.healthPoints !== 0) {
+        this.healthPoints -= 20
+        return 
+      }
       },
 
      get pointIncrease() {
@@ -24,6 +25,10 @@ function init() {
         return
       }
     }
+
+
+console.log(player.points)
+
 
 let index = 115  
 // function call to create grid
@@ -44,6 +49,8 @@ array.forEach((className, i) => {
 createGrid()
 
 const allCells = document.querySelectorAll('.grid div')
+const score = document.querySelector('.score')
+const healthPoints = document.querySelector('.hp')
 
 function handleKeyUp(event) {
     const key = event.keyCode
@@ -55,6 +62,7 @@ function handleKeyUp(event) {
       index--
     } else if (key === 32) {
       fireShot()
+      updateScore()
     } else {
       return 
     }
@@ -62,47 +70,84 @@ function handleKeyUp(event) {
   }
  document.addEventListener('keyup', handleKeyUp)
 
+ function updateScore() {
+  return score.innerHTML = "SCORE: " + player.points
+} 
+
  function fireShot() {
 let currentPositionOfBullet = shotPosition
 let x = setInterval(() => {
+    let a = setInterval(() => {
+    if(currentPositionOfBullet >= 0 && currentPositionOfBullet <= 120) { 
       allCells[currentPositionOfBullet].classList.remove('flame')
       currentPositionOfBullet -= 11
       allCells[currentPositionOfBullet].classList.add('flame')
-
-if(allCells[currentPositionOfBullet].classList.contains('gengar')) {
+      }
+      if(allCells[currentPositionOfBullet].classList.contains('gengar')) {
     let defeatedEnemy = thirdRowLevelEnemy.indexOf(currentPositionOfBullet)
     enemyDestroyed.push(defeatedEnemy + 1)
-    allCells[currentPositionOfBullet].classList.remove('gengar')
-    setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 600)
-    charizard.pointIncrease() 
-    clearInterval(x)
+    let thirdRow = thirdRowLevelEnemy.filter(gengar => gengar !== thirdRowLevelEnemy[defeatedEnemy])
+    thirdRowLevelEnemy = thirdRow
+          allCells[currentPositionOfBullet].classList.remove('gengar')
+           allCells[currentPositionOfBullet].classList.remove('flame')
+          currentPositionOfBullet = false
+   player.pointIncrease()
+   
+
+    if(allCells[currentPositionOfBullet].classList.contains('dragonitefire' )) {
+        allCells[currentPositionOfBullet].classList.remove('dragonitefire')
+         allCells[currentPositionOfBullet].classList.remove('flame')
+         currentPositionOfBullet = false
+       }
+    
+    if(allCells[currentPositionOfBullet].classList.contains('purpleball')) {
+        allCells[currentPositionOfBullet].classList.remove('purpleball')
+        allCells[currentPositionOfBullet].classList.remove('flame')
+         currentPositionOfBullet = false
+       }
+
+    if(allCells[currentPositionOfBullet].classList.contains('water')) {
+        allCells[currentPositionOfBullet].classList.remove('flame')
+        allCells[currentPositionOfBullet].classList.remove('water')
+         currentPositionOfBullet = false
+       }
+
+
 }
 
- else if(allCells[currentPositionOfBullet].classList.contains('blastoise')) {
+else if(allCells[currentPositionOfBullet].classList.contains('blastoise')) {
     let defeatedEnemy = secondLevelEnemy.indexOf(currentPositionOfBullet)
     enemyDestroyed.push(defeatedEnemy + 1)
-    allCells[currentPositionOfBullet].classList.remove('blastoise')  
-    charizard.pointIncrease()   
-    setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 600)
-      clearInterval(x)
+    allCells[currentPositionOfBullet].classList.remove('blastoise')
+    allCells[currentPositionOfBullet].classList.remove('flame')
+    currentPositionOfBullet = false  
+    let secondRow = secondLevelEnemy.filter(blastoise => blastoise !== secondLevelEnemy[defeatedEnemy])
+    secondLevelEnemy = secondRow
+   player.pointIncrease()
+      clearInterval(a)
   }
 else if (allCells[currentPositionOfBullet].classList.contains('dragonite')) {
     let defeatedEnemy = firstRowLevelEnemy.indexOf(currentPositionOfBullet)
     enemyDestroyed.push(defeatedEnemy + 1)
     allCells[currentPositionOfBullet].classList.remove('dragonite')
-   allCells[currentPositionOfBullet].classList.remove('flame')
-    charizard.pointIncrease()
-  setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 600) 
-    clearInterval(x)
+    let firstRow = firstRowLevelEnemy.filter(dragonite => dragonite !== firstRowLevelEnemy[defeatedEnemy])
+    firstRowLevelEnemy = firstRow
+    setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 3000)
+                     currentPositionOfBullet = false
+   player.pointIncrease()
+    clearInterval(a)
 } 
-
-
+      else {
+        clearInterval(x)
+      }
+    }, 200)
 if (currentPositionOfBullet > 0) {
     allCells[currentPositionOfBullet].classList.remove('flame')
     allCells[currentPositionOfBullet].classList.add('flame')
 } 
-if (currentPositionOfBullet <= 10) {
+else if (currentPositionOfBullet <= 10) {
        allCells[currentPositionOfBullet].classList.remove('flame')
+       clearInterval(a)
 }
 }, 200)
 }    
@@ -182,58 +227,91 @@ addThirdRowLevelEnemy()
 
 function dragoniteFire() {
  let dragoniteBulletPosition = firstRowLevelEnemy[Math.floor(Math.random() * firstRowLevelEnemy.length)]
- setInterval(() => {
-      allCells[dragoniteBulletPosition].classList.remove('dragoniteflame')
-      dragoniteBulletPosition += 11
-      allCells[dragoniteBulletPosition].classList.add('dragoniteflame')
-     if (allCells[dragoniteBulletPosition].classList.contains('goodPokemon')) {
-         charizard.healthPointDrop()
-      setTimeout(allCells[dragoniteBulletPosition].classList.remove('dragoniteflame'), 300)
-     }
-    if(dragoniteBulletPosition > 120) {
-     allCells[dragoniteBulletPosition].classList.remove('dragoniteflame')
-     return
-      }
-    },200) 
+
+ let dragoniteShot = setInterval(() => {
+if (dragoniteBulletPosition > 0 && dragoniteBulletPosition <= 120) {  
+    allCells[dragoniteBulletPosition].classList.remove('dragoniteflame')
+    dragoniteBulletPosition += 11
+    if (dragoniteBulletPosition < 120) {
+    allCells[dragoniteBulletPosition].classList.add('dragoniteflame')
+    }
+    if (dragoniteBulletPosition > 120) {
+      dragoniteBulletPosition = false
+    }
+    }
+    else {
+      clearInterval(dragoniteShot)
+    }
+  if(allCells[dragoniteBulletPosition].classList.contains('flame')) {
+        allCells[dragoniteBulletPosition].classList.remove('dragonitefire')
+        allCells[dragoniteBulletPosition].classList.remove('flame')
+       }
+if (allCells[dragoniteBulletPosition].classList.contains('goodPokemon')) {
+   player.healthPointDrop()
+   updateHealthPoints()
+}
+
+  }, 300)
+if (allCells[dragoniteBulletPosition].classList.contains('flame') && allCells[dragoniteBulletPosition].classList.contains('dragoniteflame')) {
+allCells[dragoniteBulletPosition].classList.remove('dragoniteflame') 
+dragoniteBulletPosition = false
+    }  
 }
 
 function blastoiseDrop() {
- let blastoiseDropPosition = secondLevelEnemy[Math.floor(Math.random() * firstRowLevelEnemy.length)]
- setInterval(() => {
-      allCells[blastoiseDropPosition].classList.remove('water')
+ let blastoiseDropPosition = secondLevelEnemy[Math.floor(Math.random() * secondLevelEnemy.length)]
+  let waterDrop = setInterval(() => {
+          allCells[blastoiseDropPosition].classList.remove('water')
+    if (blastoiseDropPosition > 0 && blastoiseDropPosition <= 109) {
       blastoiseDropPosition += 11
-      allCells[blastoiseDropPosition].classList.add('water'  )
+      allCells[blastoiseDropPosition].classList.add('water')
+    }
+    else {
+      clearInterval(waterDrop)
+    }
+  
      if (allCells[blastoiseDropPosition].classList.contains('goodPokemon')) {
-         charizard.healthPointDrop()
+         player.healthPointDrop()
+         updateHealthPoints()
       setTimeout(allCells[blastoiseDropPosition].classList.remove('water'), 300)
      }
-    if(blastoiseDropPosition > 120) {
-     allCells[blastoiseDropPosition].classList.remove('water')
+    if(blastoiseDropPosition >= 120) {
+     setTimeout(allCells[blastoiseDropPosition].classList.remove('water'))
      return
       }
     },200)
 }
 
 function gengarDrop() {
- let gengarDropPosition = secondLevelEnemy[Math.floor(Math.random() * firstRowLevelEnemy.length)]
- setInterval(() => {
-      allCells[gengarDropPosition].classList.remove('purpleball')
+ let gengarDropPosition = thirdRowLevelEnemy[Math.floor(Math.random() * thirdRowLevelEnemy.length)]
+  let gengarAttack = setInterval(() => {
+  allCells[gengarDropPosition].classList.remove('purpleball')
+    if (gengarDropPosition > 0 && gengarDropPosition <= 109) {     
       gengarDropPosition += 11
-      allCells[gengarDropPosition].classList.add('purpleball')
-     if (allCells[gengarDropPosition].classList.contains('goodPokemon')) {
-         charizard.healthPointDrop()
-      setTimeout(allCells[gengarDropPosition].classList.remove('purpleball'), 300)
+      allCells[gengarDropPosition].classList.add('purpleball')      
+    }
+    else {
+      clearInterval(gengarAttack)
+    }
+if (allCells[gengarDropPosition].classList.contains('goodPokemon')) {
+     player.healthPointDrop()
+     updateHealthPoints()
      }
-    if(gengarDropPosition > 120) {
-     allCells[gengarDropPosition].classList.remove('purpleball')
+     if (allCells[gengarDropPosition].classList.contains('flame')) {
+       allCells[gengarDropPosition].classList.remove('purpleball') 
+       gengarDropPosition = false
+    } 
+    
+    if(gengarDropPosition >= 120) {
+  allCells[gengarDropPosition].classList.remove('purpleball');
       return  
     }
-    },200)
+      }, 300)
 }
 
-setInterval(gengarDrop, 1000)
-setInterval(blastoiseDrop, 300)
-setInterval(dragoniteFire, 600)
+setInterval(gengarDrop, 500)
+setInterval(blastoiseDrop, 500)
+setInterval(dragoniteFire, 500)
 
 function moveDragoniteLeft() {
    removeFirstRowEnemy()
@@ -312,6 +390,19 @@ function secondRowEnemyMovement(){
   return
 }
 setInterval(secondRowEnemyMovement, 300)
+
+function updateHealthPoints() {
+  healthPoints.innerHTML = "HP:" + player.healthPoints
+}
+
+////////////////////////////
+
+if (charizard.healthPoints === 0) {
+  
+}
+
+
+
 
 }
 // 
