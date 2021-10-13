@@ -24,15 +24,12 @@ body {
 .box2 {
   border: 2px solid white;
   width: 23%;
+  height: 80vh;
   color: white;
 }
 
 .top-half-one {
-  height: 50%;
-}
-
-.bottom-half-one {
-  height: 50%;
+  height: 100%;
 }
 
 .main {
@@ -144,7 +141,7 @@ header {
   background-image: url("https://c.tenor.com/VUH3A7tK-qgAAAAj/dm4uz3-foekoe.gif");
   background-repeat: no-repeat;
   background-size: contain;
-  z-index: 1;
+  z-index: 2;
 }
 
 .grid div.charmanderBackwards {
@@ -184,22 +181,31 @@ header {
   background-repeat: no-repeat;
 }
 
+.explosion {
+  background-image: url("https://tenor.com/view/boom-explosion-gif-7707352");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .water {
   background-image: url("https://media4.giphy.com/media/H1S4ztIWxQLoWrRAbr/giphy.gif?cid=ecf05e479lzv7o9q5q75r153k0zx89ommbkoa1pxcdwb2k8s&rid=giphy.gif&ct=g");
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
 .purpleball {
   background-image: url("https://media0.giphy.com/media/9rtpOmC5Vijp2f9xYe/giphy.gif");
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
 .dragoniteflame {
   background-image: url("https://c.tenor.com/I0w9VW2gaL8AAAAi/lightning-bolt-thunder.gif");
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
 #hp-bar {
@@ -211,4 +217,18 @@ header {
   margin: left;
   border: 2px solid darkblue;
   border-radius: 5px;
+}
+
+.rules {
+  text-align: center;
+  list-style: none;
+  margin: auto;
+  margin-top: 10%;
+}
+
+span {
+  color: red;
+}
+li {
+  list-style: none;
 }

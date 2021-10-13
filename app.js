@@ -1,120 +1,51 @@
 function init() {
 
-  
-  let firstRowLevelEnemy =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  let secondLevelEnemy =    [12, 13, 14, 15, 16, 17, 18, 19, 20]
-  let thirdRowLevelEnemy = [23, 24, 25, 26, 27, 28, 29, 30, 31]
-  let enemyDestroyed = []
-  // charizard Object 
-  let blastoisePosition 
-  let gengarPosition
-  let shotPosition
-  
-  let player = {
-    // could potentially use a progress bar here with health points.  
-      healthPoints: 100, 
-      points: 0,
-    healthPointDrop() {
-       if (this.healthPoints !== 0) {
-        this.healthPoints -= 20
-        return 
-      }
-      },
-
-     get pointIncrease() {
-        this.points += 100
-        return
-      },
-
-    get playerReset() {
-      this.points -= this.points
-      this.healthPoints += 100
-      return
-    }
-    }
-
-
-
-
-let index = 115  
-// function call to create grid
-console.log
-
-
-
-
 function createGrid() {
-array = []
+let gridArray = []
   for (let i = 0; i < 121; i++) {
-    array.push(i)
+    gridArray.push(i)
 }
 const grid = document.querySelector('.grid')
 
-array.forEach((className) => {
+gridArray.forEach((className, i) => {
   const newCell = document.createElement('div')
   grid.appendChild(newCell)
   newCell.classList.add(className)
 })
 }
-  createGrid()
+createGrid()
 
 
-const allCells = document.querySelectorAll('.grid div')
+let enemyDestroyed = []
+let enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+let index = 110
+let shotPosition
+const grid = document.querySelector('.grid')
+const levelAnnouncement = document.querySelector('.level')
 const score = document.querySelector('.score')
 const healthPoints = document.querySelector('.hp')
 const playAgainButton = document.querySelector('.play-again')
- 
-
- 
-
 let gridWrapper = document.querySelector('.grid-wrapper')
 let startScreen = document.getElementById('start')
 const startButton = document.querySelector('.start-button')
 const gameOverScreen = document.getElementById('gameover')
-function startGame() {
-  console.log("Hello")
-  enemyDestroyed = []
-  gridWrapper.style.display ="flex";
-  startScreen.style.display ="none"
-  addCharizard(index)
-  dragoniteFire()
-  gengarDrop()
-  blastoiseDrop()
-  setInterval(gengarDrop, 750)
-  setInterval(blastoiseDrop, 750)
-  setInterval(dragoniteFire, 750)
-  firstRowLevelEnemy = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  secondLevelEnemy = [12, 13, 14, 15, 16, 17, 18, 19, 20]
-  thirdRowLevelEnemy = [23, 24, 25, 26, 27, 28, 29, 30, 31]
-  addThirdRowLevelEnemy()
-  console.log(thirdRowLevelEnemy)
-  console.log(enemyDestroyed)
+const progressBar = document.querySelector('.progress')
+
+
+const allCells = document.querySelectorAll('.grid div')
+function addCharizard(index) {
+let playerIndex = allCells[index]
+playerIndex.classList.add('goodPokemon')
+shotPosition = index
+}
+addCharizard(index)
+
+function removeCharizard(index) {
+let playerIndex = allCells[index]
+playerIndex.classList.remove('goodPokemon')
 }
 
-
-startButton.addEventListener('click', startGame)
-playAgainButton.addEventListener('click', homeScreenReturn)
-
-  addFirstRowLevelEnemy()
-  addSecondLevelEnemy()
-  addThirdRowLevelEnemy()
-
-function homeScreenReturn(){
-    gameOverScreen.style.display ="none"
-    startScreen.style.display ="flex"
-    return
-}
-
-function endGame() {
-  if (player.healthPoints === 0) {
-  startScreen.style.display ="none";
-  gridWrapper.style.display ="none";
-  gameOverScreen.style.display ="flex"
-  return
-  }
-}
-
-  function handleKeyUp(event) {
+function handleKeyUp(event) {
     const key = event.keyCode
     if (key === 39 && index !== 120) {
   removeCharizard(index)
@@ -124,363 +55,226 @@ function endGame() {
       index--
     } else if (key === 32) {
       fireShot()
-      updateScore()
-       endGame()
     } else {
       return 
     }
     addCharizard(index)
   }
  document.addEventListener('keyup', handleKeyUp)
-        function updateScore() {
-        return score.innerHTML = "SCORE: " + player.points
-        } 
 
-        function fireShot() {
-        let currentPositionOfBullet = shotPosition
-              let x = setInterval(() => {
-                        let a = setInterval(() => {
-                            if(currentPositionOfBullet >= 0 && currentPositionOfBullet <= 120) { 
-                            allCells[currentPositionOfBullet].classList.remove('flame')
-                            if (currentPositionOfBullet >= 0 && currentPositionOfBullet <= 10) {
-                              setTimeout((allCells[currentPositionOfBullet].classList.add('flame'), 700))
-                            }
-                            else {
-                            currentPositionOfBullet -= 11
-                            allCells[currentPositionOfBullet].classList.add('flame')
-                            }
-              if(allCells[currentPositionOfBullet].classList.contains('gengar')) {
-              let defeatedEnemy = thirdRowLevelEnemy.indexOf(currentPositionOfBullet)
-              enemyDestroyed.push(defeatedEnemy + 1)
-              let thirdRow = thirdRowLevelEnemy.filter(gengar => gengar !== thirdRowLevelEnemy[defeatedEnemy])
-              thirdRowLevelEnemy = thirdRow
-              allCells[currentPositionOfBullet].classList.remove('gengar')
-              allCells[currentPositionOfBullet].classList.remove('flame')
-              currentPositionOfBullet = false
-              player.pointIncrease()
-              }
-
-              if(allCells[currentPositionOfBullet].classList.contains('dragonitefire' )) {
-                  allCells[currentPositionOfBullet].classList.remove('dragonitefire')
-                  allCells[currentPositionOfBullet].classList.remove('flame')
-                  currentPositionOfBullet = false
-                }
-    
-              if(allCells[currentPositionOfBullet].classList.contains('purpleball')) {
-                  allCells[currentPositionOfBullet].classList.remove('purpleball')
-                  allCells[currentPositionOfBullet].classList.remove('flame')
-                  currentPositionOfBullet = false
-                }
-
-              if(allCells[currentPositionOfBullet].classList.contains('water')) {
-                  allCells[currentPositionOfBullet].classList.remove('flame')
-                  allCells[currentPositionOfBullet].classList.remove('water')
-                  currentPositionOfBullet = false
-                }
-      
-
-}
-
-            else if(allCells[currentPositionOfBullet].classList.contains('blastoise')) {
-                let defeatedEnemy = secondLevelEnemy.indexOf(currentPositionOfBullet)
-                enemyDestroyed.push(defeatedEnemy + 1)
-                allCells[currentPositionOfBullet].classList.remove('blastoise')
-                allCells[currentPositionOfBullet].classList.remove('flame')
-                currentPositionOfBullet = false  
-                let secondRow = secondLevelEnemy.filter(blastoise => blastoise !== secondLevelEnemy[defeatedEnemy])
-                secondLevelEnemy = secondRow
-              player.pointIncrease()
-                  clearInterval(a)
-              }
-              else if (allCells[currentPositionOfBullet].classList.contains('dragonite')) {
-                  let defeatedEnemy = firstRowLevelEnemy.indexOf(currentPositionOfBullet)
-                  enemyDestroyed.push(defeatedEnemy + 1)
-                  allCells[currentPositionOfBullet].classList.remove('dragonite')
-                  let firstRow = firstRowLevelEnemy.filter(dragonite => dragonite !== firstRowLevelEnemy[defeatedEnemy])
-                  firstRowLevelEnemy = firstRow
-                  setTimeout(allCells[currentPositionOfBullet].classList.remove('flame'), 3000)
-                                  currentPositionOfBullet = false
-                player.pointIncrease()
-                  clearInterval(a)
-              } 
-              else {
-                clearInterval(x)
-              }
-            }, 200)
-            if (currentPositionOfBullet > 0) {
-                allCells[currentPositionOfBullet].classList.remove('flame')
-                allCells[currentPositionOfBullet].classList.add('flame')
-            } 
-            else if (currentPositionOfBullet <= 10) {
-                  allCells[currentPositionOfBullet].classList.remove('flame')
-                  clearInterval(a)
-            }
-            }, 200)
-            }   
-
-              function addCharizard(index) {
-            let playerIndex = allCells[index]
-            playerIndex.classList.add('goodPokemon')
-            shotPosition = index
-        }
-
-
-            function removeCharizard(index) {
-              let playerIndex = allCells[index]
-            playerIndex.classList.remove('goodPokemon')
-            }
-
-            function addFirstRowLevelEnemy() {
-            for (let i = 0; i < firstRowLevelEnemy.length; i++) {
-              if (!enemyDestroyed.includes(i + 1)) {
-            allCells[firstRowLevelEnemy[i]].classList.add('dragonite')
-              }
-            }
-            return 
-          }
-          function addSecondLevelEnemy() {
-          for (let i = 0; i < secondLevelEnemy.length; i++) {
-            if (!enemyDestroyed.includes(i + 1)) {
-          allCells[secondLevelEnemy[i]].classList.add('blastoise')
-            }
-          }
-          return
-          }
-
-
-            function addThirdRowLevelEnemy() {
-          for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
-              if(enemyDestroyed.length < 1) {
-              allCells[thirdRowLevelEnemy[i]].classList.add('gengar')
-            }
-            if (!enemyDestroyed.includes(i + 1)) {
-          allCells[thirdRowLevelEnemy[i]].classList.add('gengar')
-            }
-          
-          }
-          return
-        }
-
-
-        function removeFirstRowEnemy() {
-      for (let i = 0; i < firstRowLevelEnemy.length; i++) {
-        if (!enemyDestroyed.includes(i + 1)) {
-          allCells[firstRowLevelEnemy[i]].classList.remove('dragonite')
-        }
-        }
-        return
+function addEnemy(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (!enemyDestroyed.includes(i+1)) {
+      if(arr[i] <= 10 && arr[i] >= 0) {
+          allCells[arr[i]].classList.add('dragonite')
       }
+        if(arr[i] <= 21 && arr[i] >= 11) {
+          allCells[arr[i]].classList.add('blastoise')
+      }
+        if(arr[i] <= 31 && arr[i] >= 21) {
+          allCells[arr[i]].classList.add('gengar')
+        }
+    }
+  } 
+}
 
-        function removeSecondRowEnemy() {
-      for (let i = 0; i < secondLevelEnemy.length; i++) {
-        if (!enemyDestroyed.includes(i + 1)) {
-          allCells[secondLevelEnemy[i]].classList.remove('blastoise')
+function removeEnemy(arr) {
+  for (let i = 0; i < arr.length; i++) {
+      if(arr[i] <= 10 && arr[i] >= 0) {
+        if(!enemyDestroyed.includes(i+1)) {
+      allCells[arr[i]].classList.remove('dragonite')
+      }
+    }
+      if(arr[i] <= 20 && arr[i] >= 11) {
+      allCells[arr[i]].classList.remove('blastoise')
+      }
+      if(arr[i] <= 31 && arr[i] >= 21) {
+      allCells[arr[i]].classList.remove('gengar')
+  }
+}
+}
+
+addEnemy(enemyArray)
+
+function enemyShots() {
+    const bulletPosition = enemyArray[Math.floor(Math.random() * enemyArray.length)]  
+    let enemyBulletPosition = bulletPosition
+      setInterval(() => {
+if(enemyBulletPosition < 120) {
+    if (allCells[bulletPosition].classList.contains('dragonite') || enemyDestroyed.includes(bulletPosition)) {
+      setInterval(() => {
+      allCells[enemyBulletPosition].classList.remove('dragoniteflame')    
+      enemyBulletPosition += 11
+      allCells[enemyBulletPosition].classList.add('dragoniteflame')
+         if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
+      decreaseHealth()
+       updateHealth()
+       progressBarUpdate()
+       endGame()
+      }
+      }, 600)
+    }
+ 
+    }
+    if(allCells[bulletPosition].classList.contains('blastoise')) {
+      setInterval(() => {
+      allCells[enemyBulletPosition].classList.remove('water')
+      enemyBulletPosition += 11
+      allCells[enemyBulletPosition].classList.add('water')
+        if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
+          decreaseHealth()
+          updateHealth()
+          progressBarUpdate()
+          endGame()
         }
-        }
-        return
-        }
-        function removeThirdRowEnemy() {
-        for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
-          if (!enemyDestroyed.includes(i + 1)) {
-            allCells[thirdRowLevelEnemy[i]].classList.remove('gengar')
+         }, 600)
+    }
+   
+   
+    if(allCells[bulletPosition].classList.contains('gengar')) {
+          setInterval(() => {
+      allCells[enemyBulletPosition].classList.remove('purpleball') 
+      enemyBulletPosition += 11 
+      allCells[enemyBulletPosition].classList.add('purpleball')
+     if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
+          decreaseHealth()
+          updateHealth()
+          progressBarUpdate()
+          endGame()
+    }
+       }, 600)
+    }
+ 
+  }, 350)
+}
+
+
+
+
+
+
+setInterval(enemyShots, 200)
+
+function fireShot() {
+  shotPosition = index
+  let temp = shotPosition
+  let shootFlame = setInterval(() => {
+      if(temp >= 0 && temp <= 120) {
+        allCells[temp].classList.remove('flame')  
+        temp -= 11
+        allCells[temp].classList.add('flame')
+          if(allCells[temp].classList.contains('gengar')) {
+              allCells[temp].classList.remove('gengar')
+              updatePoints() 
+              updateScore() 
+              setTimeout((allCells[temp].classList.remove('flame')), 300)
+              clearInterval(shootFlame)
           }
+          if(allCells[temp].classList.contains('blastoise')) {
+              allCells[temp].classList.remove('blastoise')
+              updatePoints()
+              updateScore() 
+              setTimeout((allCells[temp].classList.remove('flame')), 300)
+              clearInterval(shootFlame)
           }
-          return 
-        } 
+           if(allCells[temp].classList.contains('dragonite')) {
+              allCells[temp].classList.remove('dragonite')
+              updatePoints()
+              updateScore() 
+              setTimeout((allCells[temp].classList.add('flame')), 3000)
+              clearInterval(shootFlame)
+          } 
+          if(allCells[temp].classList.contains('dragoniteflame') && allCells[temp].classList.contains('purple')) { 
+            allCells[temp].classList.remove('dragoniteflame')
+            allCells[temp].classList.remove('purpleball')
+          }
+      } 
+    }, 100)
+}
 
-removeFirstRowEnemy()
-removeSecondRowEnemy()
-removeThirdRowEnemy()
-addFirstRowLevelEnemy()
-addSecondLevelEnemy()
-addThirdRowLevelEnemy()
+let playerPoints = 0
+let healthPointsCount = 100
 
-          function dragoniteFire() {
-          let dragoniteBulletPosition = firstRowLevelEnemy[Math.floor(Math.random() * firstRowLevelEnemy.length)]
-          let dragoniteShot = setInterval(() => {
-          if (dragoniteBulletPosition > 0 && dragoniteBulletPosition <= 120) {  
-              allCells[dragoniteBulletPosition].classList.remove('dragoniteflame')
+function updatePoints() {
+ playerPoints += 100
+ return
+}
 
-            if(dragoniteBulletPosition >= 109 && dragoniteBulletPosition <= 120) {
-            setTimeout(allCells[dragoniteBulletPosition].classList.remove('dragoniteflame'), 700)
-            }
-            else{
-              dragoniteBulletPosition += 11
-            allCells[dragoniteBulletPosition].classList.add('dragoniteflame')
-            }
-              if (dragoniteBulletPosition > 120) {
-                dragoniteBulletPosition = false
-              }
-              }
-              else {
-                clearInterval(dragoniteShot)
-              }
-              if(allCells[dragoniteBulletPosition].classList.contains('flame')) {
-                    allCells[dragoniteBulletPosition].classList.remove('dragonitefire')
-                    allCells[dragoniteBulletPosition].classList.remove('flame')
-                  }
-            if (allCells[dragoniteBulletPosition].classList.contains('goodPokemon')) {
-              player.healthPointDrop()
-              updateHealthPoints()
-            }
+function updateScore() {
+   return score.innerHTML = "SCORE:" + playerPoints
+}
 
-              }, 300)
-            if (allCells[dragoniteBulletPosition].classList.contains('flame') && allCells[dragoniteBulletPosition].classList.contains('dragoniteflame')) {
-            allCells[dragoniteBulletPosition].classList.remove('dragoniteflame') 
-            dragoniteBulletPosition = false
-                }  
-                return
-            }
+function resetPoints() {
+  return playerPoints = 0
+}
 
-            function blastoiseDrop() {
-            let blastoiseDropPosition = secondLevelEnemy[Math.floor(Math.random() * secondLevelEnemy.length)]
-              let waterDrop = setInterval(() => {
-                      allCells[blastoiseDropPosition].classList.remove('water')
-                if (blastoiseDropPosition > 0 && blastoiseDropPosition <= 109) {
-                
-                  if(blastoiseDropPosition >= 109 && blastoiseDropPosition <= 120) {
-              setTimeout(allCells[blastoiseDropPosition].classList.remove('dragoniteflame'), 700)
-              }
+function healthPointsReset() {
+   healthPointsCount = 100
+   return
+}
 
-                else {
+function updateHealth() {
+  healthPoints.innerHTML = "HP:" + healthPointsCount
+}
 
-                blastoiseDropPosition += 11
-                  allCells[blastoiseDropPosition].classList.add('water')
-                }
-                }
-                else {
-                  clearInterval(waterDrop)
-                }
-              
-                if (allCells[blastoiseDropPosition].classList.contains('goodPokemon')) {
-                    player.healthPointDrop()
-                    updateHealthPoints()
-                  setTimeout(allCells[blastoiseDropPosition].classList.remove('water'), 300)
-                }
-                if(blastoiseDropPosition >= 120) {
-                setTimeout(allCells[blastoiseDropPosition].classList.remove('water'))
-                return
-                  }
-                },200)
-      return 
-            }
+function decreaseHealth() {
+  if (healthPointsCount >= 10) {
+  healthPointsCount -= 10
+  }
+  return
+}
 
-            function gengarDrop() {
-            let gengarDropPosition = thirdRowLevelEnemy[Math.floor(Math.random() * thirdRowLevelEnemy.length)]
-              let gengarAttack = setInterval(() => {
-              allCells[gengarDropPosition].classList.remove('purpleball')
-                if (gengarDropPosition > 0 && gengarDropPosition <= 109) {     
-                  gengarDropPosition += 11
-                  allCells[gengarDropPosition].classList.add('purpleball')      
-                }
-                else {
-                  clearInterval(gengarAttack)
-                }
-            if (allCells[gengarDropPosition].classList.contains('goodPokemon')) {
-                player.healthPointDrop()
-                updateHealthPoints()
-                }
-                if (allCells[gengarDropPosition].classList.contains('flame')) {
-                  allCells[gengarDropPosition].classList.remove('purpleball') 
-                  gengarDropPosition = false
-                } 
-                
-                if(gengarDropPosition >= 120) {
-              allCells[gengarDropPosition].classList.remove('purpleball');
-                  return  
-                }
-                  }, 300)
+function startGame() {
+    playerPoints = 0
+  healthPointsCount = 100
+    updateHealth()
+    updatePoints()
+  removeEnemy(enemyArray)
+  enemyDestroyed = []
+  enemyArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+  addEnemy(enemyArray)
+  console.log("Hello")
+  gridWrapper.style.display ="flex";
+  startScreen.style.display ="none"
+  removeCharizard(index)
+  index = 110
+  addCharizard(110)
+  // healthPointsReset()
+}
+
+function homeScreenReturn(){
+    gameOverScreen.style.display ="none"
+    startScreen.style.display ="flex"
+    playerPoints = 0
+    updateScore()
+    updatePoints()
+    removeCharizard(index)
+  index = 110
+  addCharizard(110)
     return
-            }
-
-
-          function moveDragoniteLeft() {
-            removeFirstRowEnemy()
-              for (let i = 0; i < firstRowLevelEnemy.length; i++) {
-              firstRowLevelEnemy[i] -= 1
-              }
-              addFirstRowLevelEnemy()
-          }
-
-function moveDragoniteRight() {
-   removeFirstRowEnemy()
-    for (let i = 0; i < firstRowLevelEnemy.length; i++) {
-    firstRowLevelEnemy[i] += 1
-    }
-    addFirstRowLevelEnemy()
 }
 
-function moveBlastoiseLeft() {
-  removeSecondRowEnemy() 
-  for (let i = 0; i < secondLevelEnemy.length; i++) {
-    secondLevelEnemy[i] -= 1
-    }
-  addSecondLevelEnemy()
+startButton.addEventListener('click', startGame)
+playAgainButton.addEventListener('click', homeScreenReturn)
+
+function progressBarUpdate() {
+  progressBar.setAttribute('value', `${healthPointsCount}`)
 }
 
-function moveBlastoiseRight() {
-  removeSecondRowEnemy() 
-  for (let i = 0; i < secondLevelEnemy.length; i++) {
-    secondLevelEnemy[i] += 1
-    }
-  addSecondLevelEnemy()
-}
-moveBlastoiseRight()
-
-
-function gengarMoveLeft() {
-  removeThirdRowEnemy()
-   for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
-    thirdRowLevelEnemy[i] -= 1
-    }
-   addThirdRowLevelEnemy()
+function levelUpdate() {
+  
 }
 
-function gengarMoveRight() {
-  removeThirdRowEnemy()
-  for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
-    thirdRowLevelEnemy[i] += 1
-    }
-  addThirdRowLevelEnemy()
+function endGame() {
+ if (healthPointsCount <= 0) {
+ startScreen.style.display ="none";
+  gridWrapper.style.display ="none";
+  gameOverScreen.style.display ="flex"
 }
-
-
-function moveEnemiesFirstRow() {
-  switch(firstRowLevelEnemy[0]){
-    case 0:
-      moveDragoniteRight()
-      break;
-    case 1:
-      moveDragoniteLeft()
-      break;
-  }
-  return
+return
 }
-
-
-function secondRowEnemyMovement(){
-  switch(secondLevelEnemy[0]){
-    case 2:
-      moveBlastoiseLeft()
-      break;
-    case 1:
-      moveBlastoiseRight()
-      break;
-  }
-  return
-}
-setInterval(secondRowEnemyMovement, 300)
-
-function updateHealthPoints() {
-  healthPoints.innerHTML = "HP:" + player.healthPoints
-}
-
-////////////////////////////
-
-
 
 
 
 }
-// 
 window.addEventListener('DOMContentLoaded', init)
