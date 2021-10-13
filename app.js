@@ -27,8 +27,8 @@ function init() {
       },
 
     get playerReset() {
-      this.points = 0
-      this.healthPoints = 100
+      this.points -= this.points
+      this.healthPoints += 100
       return
     }
     }
@@ -73,7 +73,7 @@ const startButton = document.querySelector('.start-button')
 const gameOverScreen = document.getElementById('gameover')
 function startGame() {
   console.log("Hello")
-    enemyDestroyed = []
+  enemyDestroyed = []
   gridWrapper.style.display ="flex";
   startScreen.style.display ="none"
   addCharizard(index)
@@ -83,18 +83,21 @@ function startGame() {
   setInterval(gengarDrop, 750)
   setInterval(blastoiseDrop, 750)
   setInterval(dragoniteFire, 750)
-  player.playerReset()
   firstRowLevelEnemy = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   secondLevelEnemy = [12, 13, 14, 15, 16, 17, 18, 19, 20]
   thirdRowLevelEnemy = [23, 24, 25, 26, 27, 28, 29, 30, 31]
-  addFirstRowLevelEnemy()
-  addSecondLevelEnemy()
   addThirdRowLevelEnemy()
+  console.log(thirdRowLevelEnemy)
+  console.log(enemyDestroyed)
 }
 
 
 startButton.addEventListener('click', startGame)
 playAgainButton.addEventListener('click', homeScreenReturn)
+
+  addFirstRowLevelEnemy()
+  addSecondLevelEnemy()
+  addThirdRowLevelEnemy()
 
 function homeScreenReturn(){
     gameOverScreen.style.display ="none"
@@ -247,9 +250,13 @@ function endGame() {
 
             function addThirdRowLevelEnemy() {
           for (let i = 0; i < thirdRowLevelEnemy.length; i++) {
+              if(enemyDestroyed.length < 1) {
+              allCells[thirdRowLevelEnemy[i]].classList.add('gengar')
+            }
             if (!enemyDestroyed.includes(i + 1)) {
           allCells[thirdRowLevelEnemy[i]].classList.add('gengar')
             }
+          
           }
           return
         }
@@ -436,9 +443,6 @@ function gengarMoveRight() {
     }
   addThirdRowLevelEnemy()
 }
-
-
-
 
 
 function moveEnemiesFirstRow() {
