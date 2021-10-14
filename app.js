@@ -121,7 +121,12 @@ function enemyShots() {
 if(enemyBulletPosition < 120) {
     if (allCells[bulletPosition].classList.contains('dragonite') || enemyDestroyed.includes(bulletPosition)) {
       setInterval(() => {
-      allCells[enemyBulletPosition].classList.remove('dragoniteflame')    
+      allCells[enemyBulletPosition].classList.remove('dragoniteflame') 
+      if (enemyBulletPosition > 109) {
+      setTimeout(allCells[enemyBulletPosition].classList.add('dragoniteflame'), 400) 
+      allCells[enemyBulletPosition].classList.remove('dragoniteflame') 
+      }
+      else {
       enemyBulletPosition += 11
       allCells[enemyBulletPosition].classList.add('dragoniteflame')
          if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
@@ -129,6 +134,7 @@ if(enemyBulletPosition < 120) {
        updateHealth()
        progressBarUpdate()
       }
+    }
       }, 600)
     }
  
@@ -136,18 +142,29 @@ if(enemyBulletPosition < 120) {
     if(allCells[bulletPosition].classList.contains('blastoise')) {
       setInterval(() => {
       allCells[enemyBulletPosition].classList.remove('water')
-      enemyBulletPosition += 11
+       if (enemyBulletPosition > 109) {
+      setTimeout(allCells[enemyBulletPosition].classList.add('water'), 400) 
+      allCells[enemyBulletPosition].classList.remove('water') 
+      }
+        else {
+               enemyBulletPosition += 11
       allCells[enemyBulletPosition].classList.add('water')
         if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
           decreaseHealth()
           updateHealth()
           progressBarUpdate()
         }
+      }
          }, 600) 
     }
     if(allCells[bulletPosition].classList.contains('gengar')) {
           setInterval(() => {
       allCells[enemyBulletPosition].classList.remove('purpleball') 
+           if (enemyBulletPosition > 109) {
+      setTimeout(allCells[enemyBulletPosition].classList.add('purpleball'), 400) 
+      allCells[enemyBulletPosition].classList.remove('purpleball') 
+      }
+      else {
       enemyBulletPosition += 11 
       allCells[enemyBulletPosition].classList.add('purpleball')
      if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
@@ -155,7 +172,7 @@ if(enemyBulletPosition < 120) {
           updateHealth()
           progressBarUpdate()
     }
-  
+  }
        }, 600)
     }
     }, 350)
@@ -165,10 +182,14 @@ if(enemyBulletPosition < 120) {
 function levelTwoShots() {
   const bulletPositionTwo = levelTwoEnemy[Math.floor(Math.random() * enemyArray.length)]  
     let enemyBulletPositionTwo = bulletPositionTwo
-
       if(allCells[bulletPositionTwo].classList.contains('venasaur')) {
           setInterval(() => {
       allCells[enemyBulletPositionTwo].classList.remove('leaf') 
+      if (enemyBulletPositionTwo > 109) {
+        setTimeout(allCells[enemyBulletPositionTwo].classList.add('leaf'), 1000) 
+        allCells[enemyBulletPositionTwo].classList.remove('leaf') 
+      }
+      else {
       enemyBulletPositionTwo += 11 
       allCells[enemyBulletPositionTwo].classList.add('leaf')
      if(allCells[enemyBulletPositionTwo].classList.contains('goodPokemon')) {
@@ -176,6 +197,7 @@ function levelTwoShots() {
           updateHealth()
           progressBarUpdate()
      }
+    }
         }, 500)
       }
       }
@@ -186,6 +208,11 @@ function levelThreeShots() {
       if(allCells[bulletPositionThree].classList.contains('trainer')) {
           setInterval(() => {
       allCells[enemyBulletPositionThree].classList.remove('pokeball') 
+            if (bulletPositionThree >= 110) {
+     setTimeout(allCells[enemyBulletPositionThree].classList.add('pokeball'), 1000)
+    allCells[enemyBulletPositionThree].classList.remove('pokeball') 
+            }
+            else {
       enemyBulletPositionThree += 11 
       allCells[enemyBulletPositionThree].classList.add('pokeball')
      if(allCells[enemyBulletPositionThree].classList.contains('goodPokemon')) {
@@ -193,6 +220,7 @@ function levelThreeShots() {
           updateHealth()
           progressBarUpdate()
      }
+    }
         }, 500)
       }
 }
@@ -221,7 +249,12 @@ function fireShot() {
   let temp = shotPosition
   let shootFlame = setInterval(() => {
       if(temp >= 0 && temp <= 120) {
-        allCells[temp].classList.remove('flame')  
+        allCells[temp].classList.remove('flame') 
+        if (temp <= 10) {
+          setTimeout(allCells[temp].classList.add('flame'), 1000)
+          allCells[temp].classList.remove('flame')
+        } 
+        else {
         temp -= 11
         allCells[temp].classList.add('flame')
             if(allCells[temp].classList.contains('trainer')) {
@@ -263,6 +296,7 @@ function fireShot() {
             allCells[temp].classList.remove('dragoniteflame')
             allCells[temp].classList.remove('purpleball')
           }
+        }
       } 
     }, 100)
     
