@@ -131,12 +131,6 @@ header {
   background-size: contain;
 }
 
-.grid div.evilPokemon {
-  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/blastoise.gif");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .flame {
   background-image: url("https://c.tenor.com/VUH3A7tK-qgAAAAj/dm4uz3-foekoe.gif");
   background-repeat: no-repeat;
@@ -167,6 +161,7 @@ header {
   background-repeat: no-repeat;
   background-size: contain;
   background-repeat: no-repeat;
+  transform: scaleX(-1);
 }
 
 .grid div.dragonite {
@@ -195,7 +190,7 @@ header {
 }
 
 .purpleball {
-  background-image: url("https://media0.giphy.com/media/9rtpOmC5Vijp2f9xYe/giphy.gif");
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/shiny/gastly.gif");
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 1;
@@ -231,4 +226,17 @@ span {
 }
 li {
   list-style: none;
+}
+
+.left-charizard {
+  transform: scaleX(-1);
+}
+
+@keyframes rotating {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
 }

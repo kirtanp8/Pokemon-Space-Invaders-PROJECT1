@@ -20,6 +20,7 @@ let enemyDestroyed = []
 let enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 let index = 110
 let shotPosition
+let level = 0
 const grid = document.querySelector('.grid')
 const levelAnnouncement = document.querySelector('.level')
 const score = document.querySelector('.score')
@@ -30,6 +31,9 @@ let startScreen = document.getElementById('start')
 const startButton = document.querySelector('.start-button')
 const gameOverScreen = document.getElementById('gameover')
 const progressBar = document.querySelector('.progress')
+const startGameAudio = document.getElementById('start-game-sound')
+const listenButton = document.querySelector('button#js-only-button')
+const gameSound = document.getElementById('game-sound')
 
 
 const allCells = document.querySelectorAll('.grid div')
@@ -110,7 +114,6 @@ if(enemyBulletPosition < 120) {
       decreaseHealth()
        updateHealth()
        progressBarUpdate()
-       endGame()
       }
       }, 600)
     }
@@ -125,12 +128,10 @@ if(enemyBulletPosition < 120) {
           decreaseHealth()
           updateHealth()
           progressBarUpdate()
-          endGame()
         }
          }, 600)
     }
-   
-   
+
     if(allCells[bulletPosition].classList.contains('gengar')) {
           setInterval(() => {
       allCells[enemyBulletPosition].classList.remove('purpleball') 
@@ -140,14 +141,13 @@ if(enemyBulletPosition < 120) {
           decreaseHealth()
           updateHealth()
           progressBarUpdate()
-          endGame()
     }
+  
        }, 600)
-    }
- 
-  }, 350)
-}
-
+      }
+    }, 350)
+    endGame()
+  }
 
 
 
@@ -190,10 +190,20 @@ function fireShot() {
           }
       } 
     }, 100)
+    
+
 }
 
 let playerPoints = 0
 let healthPointsCount = 100
+
+
+
+
+  
+
+
+
 
 function updatePoints() {
  playerPoints += 100
@@ -239,12 +249,15 @@ function startGame() {
   removeCharizard(index)
   index = 110
   addCharizard(110)
+  startGameAudio.play()
+  gameSound.play()
   // healthPointsReset()
 }
 
 function homeScreenReturn(){
     gameOverScreen.style.display ="none"
     startScreen.style.display ="flex"
+    healthPointsCount = 100
     playerPoints = 0
     updateScore()
     updatePoints()
@@ -262,8 +275,10 @@ function progressBarUpdate() {
 }
 
 function levelUpdate() {
-  
+  levelAnnouncement.innerHTML = "Level:" + level
 }
+
+
 
 function endGame() {
  if (healthPointsCount <= 0) {
@@ -271,7 +286,6 @@ function endGame() {
   gridWrapper.style.display ="none";
   gameOverScreen.style.display ="flex"
 }
-return
 }
 
 
