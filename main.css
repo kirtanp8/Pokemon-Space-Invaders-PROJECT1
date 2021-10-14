@@ -251,3 +251,27 @@ li {
 .left-charizard {
   transform: scaleX(-1);
 }
+
+.grid div.venasaur {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/venusaur.gif");
+}
+
+.grid div.leaf {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("https://i.pinimg.com/originals/e5/fb/b0/e5fbb04348f27b01c8956139eac5be19.gif");
+}
+
+.pokeball {
+  background-image: url("https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.trainer {
+  background-image: url("https://media3.giphy.com/media/jsldOEWA0lqSI/200w.webp?cid=ecf05e478gru370z51hqh27t09hl3t9k3ptvco2xqgwc3nbb&rid=200w.webp&ct=s");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
