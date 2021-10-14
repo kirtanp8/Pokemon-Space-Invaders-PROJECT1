@@ -197,7 +197,7 @@ function levelThreeShots() {
       }
 }
 
-  let levelThreeEnemy = [45, 46, 47, 48, 49, 50, 51, 52, 53]
+  levelThreeEnemy = [45, 46, 47, 48, 49, 50, 51, 52, 53]
   addEnemy(levelThreeEnemy)
   enemyDestroyed = []
   addEnemy(enemyArray)
@@ -308,6 +308,7 @@ function startGame() {
   updatePoints()
   removeEnemy(enemyArray)
   removeEnemy(levelTwoEnemy)
+  let levelThreeEnemy = []
   removeEnemy(levelThreeEnemy)
   level = 1
   levelUpdate()
