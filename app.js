@@ -32,10 +32,8 @@ const startButton = document.querySelector('.start-button')
 const gameOverScreen = document.getElementById('gameover')
 const progressBar = document.querySelector('.progress')
 const startGameAudio = document.getElementById('start-game-sound')
-const listenButton = document.querySelector('button#js-only-button')
 const gameSound = document.getElementById('game-sound')
-
-
+const endMessage = document.querySelector('.gameOverYouWin')
 const allCells = document.querySelectorAll('.grid div')
 function addCharizard(index) {
 let playerIndex = allCells[index]
@@ -240,6 +238,8 @@ function startGame() {
     updateHealth()
     updatePoints()
   removeEnemy(enemyArray)
+  level = 1
+  levelUpdate()
   enemyDestroyed = []
   enemyArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
   addEnemy(enemyArray)
@@ -284,7 +284,15 @@ function endGame() {
  if (healthPointsCount <= 0) {
  startScreen.style.display ="none";
   gridWrapper.style.display ="none";
+  endMessage.innerHTML ="GAME OVER!"
   gameOverScreen.style.display ="flex"
+}
+if (playerPoints >= 2700) {
+   startScreen.style.display ="none";
+  gridWrapper.style.display ="none";
+  endMessage.innerHTML = "YOU WIN!"
+  gameOverScreen.style.display ="flex"
+  
 }
 }
 

@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .box {
@@ -24,6 +25,8 @@ body {
 .box2 {
   border: 2px solid white;
   width: 23%;
+  max-width: 23%;
+  min-width: 23%;
   height: 80vh;
   color: white;
 }
@@ -77,6 +80,23 @@ header {
   height: 80vh;
   text-align: center;
   display: none;
+  min-height: 80vh;
+  max-height: 80vh;
+  max-width: 50%;
+  min-width: 50%;
+}
+
+#you-win {
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border: 0.2px solid red;
+  width: 50%;
+  margin: auto;
+  font-size: 3em;
+  height: 80vh;
+  text-align: center;
+  display: flex;
   min-height: 80vh;
   max-height: 80vh;
   max-width: 50%;
@@ -230,13 +250,4 @@ li {
 
 .left-charizard {
   transform: scaleX(-1);
-}
-
-@keyframes rotating {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(180deg);
-  }
 }
