@@ -62,7 +62,7 @@ function handleKeyUp(event) {
   removeCharizard(index)
       index--
     } else if (key === 32) {
-     setInterval(fireShot, 150)
+     fireShot()
     } else {
       return 
     }
@@ -298,7 +298,7 @@ function fireShot() {
           }
         }
       } 
-    }, 100)
+    }, 60)
     
 
 }
