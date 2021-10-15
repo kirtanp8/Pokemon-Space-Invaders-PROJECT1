@@ -40,6 +40,8 @@ const allCells = document.querySelectorAll('.grid div')
 const levelTwoSound = document.getElementById('level-two')
 const levelThreeSound = document.getElementById('level-three')
 const youWin = document.getElementById('you-win-sound')
+const youLose = document.getElementById('you-lose-sound')
+
 
 function addCharizard(index) {
 let playerIndex = allCells[index]
@@ -189,11 +191,6 @@ function fireShot() {
     return 
 }
 
-  setInterval(() => {
-setInterval(enemyShots('dragonite', 'dragoniteflame', enemyArray), 100)
-setInterval(enemyShots('blastoise', 'water', enemyArray), 200)
-setInterval(enemyShots('gengar', 'purpleball', enemyArray), 100)
-  }, 200)
 
 
 
@@ -237,7 +234,7 @@ function levelThreeOpen() {
   addEnemy(levelThreeEnemy)
   addEnemy(enemyArray)
   addEnemy(levelTwoEnemy)
-  setInterval(enemyShots('trainer', 'pokeball', levelThreeEnemy), 3000)
+
   level = 3
   healthPointsCount = 100
   updateHealth()
@@ -278,32 +275,38 @@ function decreaseHealth() {
 function startGame() {
   let gameInterval = setInterval(() => {
  if (healthPointsCount <= 0) {
- startScreen.style.display ="none";
-  gridWrapper.style.display ="none";
-  endMessage.innerHTML ="GAME OVER!"
-  gameOverScreen.style.display ="flex"
-  removeEnemy(levelThreeEnemy)
-  removeEnemy(levelTwoEnemy)
+startScreen.style.display ="none";
+gridWrapper.style.display ="none";
+endMessage.innerHTML ="GAME OVER!"
+gameOverScreen.style.display ="flex"
+youLose.play()
+removeEnemy(levelThreeEnemy)
+removeEnemy(levelTwoEnemy)
 }
 if (playerPoints === 2800) {
-  levelTwoSound.play()
-  levelUpdate()
-  levelTwoOpen()
-  removeEnemy(enemyArray)
+levelTwoSound.play()
+levelUpdate()
+levelTwoOpen()
+removeEnemy(enemyArray)
 enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 levelTwoEnemy = [34, 35, 36, 37, 38, 39, 40, 41, 42]
 addEnemy(levelTwoEnemy)
 addEnemy(enemyArray)
-setInterval(() => {
+setTimeout(() => {
+  setInterval(() => {
 setInterval(enemyShots('venasaur', 'leaf', levelTwoEnemy), 1000)}, 2000)
-  healthPointsCount = 100
-  updateHealth()
-  return
+}, 1500);
+healthPointsCount = 100
+updateHealth()
+return
 }
 if (playerPoints === 6300 ||  playerPoints === 6400) {
   levelThreeSound.play()
   levelUpdate()
   levelThreeOpen()
+  setTimeout(() => {
+    setInterval(enemyShots('trainer', 'pokeball', levelThreeEnemy), 3000)
+  }, 1000)
 }
 if (playerPoints >= 10800) {
    startScreen.style.display ="none";
@@ -334,7 +337,19 @@ if (playerPoints >= 10800) {
   index = 110
   addCharizard(110)
   startGameAudio.play()
-  setTimeout(gameSound.play(), 3000)
+// setTimeout(gameSound.play(), 4000)
+  setTimeout(() => {
+  setInterval(() => {
+setInterval(enemyShots('dragonite', 'dragoniteflame', enemyArray), 100)
+setInterval(enemyShots('blastoise', 'water', enemyArray), 200)
+setInterval(enemyShots('gengar', 'purpleball', enemyArray), 100)
+  }, 200)
+}, 600);
+
+
+
+
+
   // healthPointsReset()
 }
 
