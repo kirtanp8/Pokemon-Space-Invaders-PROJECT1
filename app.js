@@ -16,7 +16,8 @@ gridArray.forEach((className, i) => {
 createGrid()
 
 
-let enemyDestroyed = []
+let playerPoints = 0
+let healthPointsCount = 100
 let enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 let levelTwoEnemy = [34, 35, 36, 37, 38, 39, 40, 41, 42]
 let index = 110
@@ -39,7 +40,6 @@ const allCells = document.querySelectorAll('.grid div')
 const levelTwoSound = document.getElementById('level-two')
 const levelThreeSound = document.getElementById('level-three')
 const youWin = document.getElementById('you-win-sound')
-
 
 function addCharizard(index) {
 let playerIndex = allCells[index]
@@ -72,7 +72,6 @@ function handleKeyUp(event) {
 
 function addEnemy(arr) {
   for (let i = 0; i < arr.length; i++) {
-    if (!enemyDestroyed.includes(i+1)) {
       if(arr[i] <= 10 && arr[i] >= 0) {
           allCells[arr[i]].classList.add('dragonite')
       }
@@ -88,16 +87,13 @@ function addEnemy(arr) {
            if(arr[i] <= 53 && arr[i] >= 45) {
           allCells[arr[i]].classList.add('trainer')
         }
-    }
   } 
 }
 
 function removeEnemy(arr) {
   for (let i = 0; i < arr.length; i++) {
       if(arr[i] <= 10 && arr[i] >= 0) {
-        if(!enemyDestroyed.includes(i+1)) {
       allCells[arr[i]].classList.remove('dragonite')
-      }
     }
       if(arr[i] <= 20 && arr[i] >= 11) {
       allCells[arr[i]].classList.remove('blastoise')
@@ -114,197 +110,141 @@ function removeEnemy(arr) {
 }
 }
 
-function enemyShots() {
-    const bulletPosition = enemyArray[Math.floor(Math.random() * enemyArray.length)]  
-    let enemyBulletPosition = bulletPosition
-      setInterval(() => {
-if(enemyBulletPosition < 120) {
-    if (allCells[bulletPosition].classList.contains('dragonite') || enemyDestroyed.includes(bulletPosition)) {
-      setInterval(() => {
-      allCells[enemyBulletPosition].classList.remove('dragoniteflame') 
-      if (enemyBulletPosition > 109) {
-      setTimeout(allCells[enemyBulletPosition].classList.add('dragoniteflame'), 400) 
-      allCells[enemyBulletPosition].classList.remove('dragoniteflame') 
+
+function enemyShots(pokemon, move, arr) {
+const bulletPosition = arr[Math.floor(Math.random() * arr.length)]  
+let enemyBulletPosition = bulletPosition
+console.log("helleOne")
+  console.log("bulletPosition")
+ setInterval(() => {
+  if(enemyBulletPosition <= 119) {
+  if (!allCells[bulletPosition].classList.contains(pokemon)) {
+  console.log("hello")
+  }
+  else if(allCells[bulletPosition].classList.contains(pokemon)) {
+  setInterval(() => {
+        allCells[enemyBulletPosition].classList.remove(move) 
+      if (bulletPosition >= 109) {
+      setTimeout(allCells[enemyBulletPosition].classList.add(move), 1000)
+      allCells[enemyBulletPosition].classList.remove(move)
       }
-      else {
-      enemyBulletPosition += 11
-      allCells[enemyBulletPosition].classList.add('dragoniteflame')
-         if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
-      decreaseHealth()
-       updateHealth()
-       progressBarUpdate()
-      }
-    }
-      }, 600)
-    }
- 
-    }
-    if(allCells[bulletPosition].classList.contains('blastoise')) {
-      setInterval(() => {
-      allCells[enemyBulletPosition].classList.remove('water')
-       if (enemyBulletPosition > 109) {
-      setTimeout(allCells[enemyBulletPosition].classList.add('water'), 400) 
-      allCells[enemyBulletPosition].classList.remove('water') 
-      }
-        else {
-               enemyBulletPosition += 11
-      allCells[enemyBulletPosition].classList.add('water')
-        if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
-          decreaseHealth()
-          updateHealth()
-          progressBarUpdate()
-        }
-      }
-         }, 600) 
-    }
-    if(allCells[bulletPosition].classList.contains('gengar')) {
-          setInterval(() => {
-      allCells[enemyBulletPosition].classList.remove('purpleball') 
-           if (enemyBulletPosition > 109) {
-      setTimeout(allCells[enemyBulletPosition].classList.add('purpleball'), 400) 
-      allCells[enemyBulletPosition].classList.remove('purpleball') 
-      }
-      else {
+else {
       enemyBulletPosition += 11 
-      allCells[enemyBulletPosition].classList.add('purpleball')
+      allCells[enemyBulletPosition].classList.add(move)
      if(allCells[enemyBulletPosition].classList.contains('goodPokemon')) {
           decreaseHealth()
           updateHealth()
           progressBarUpdate()
-    }
-  }
-       }, 600)
-    }
-    }, 350)
-    endGame()
-  }
-
-function levelTwoShots() {
-  const bulletPositionTwo = levelTwoEnemy[Math.floor(Math.random() * enemyArray.length)]  
-    let enemyBulletPositionTwo = bulletPositionTwo
-      if(allCells[bulletPositionTwo].classList.contains('venasaur')) {
-          setInterval(() => {
-      allCells[enemyBulletPositionTwo].classList.remove('leaf') 
-      if (enemyBulletPositionTwo > 109) {
-        setTimeout(allCells[enemyBulletPositionTwo].classList.add('leaf'), 1000) 
-        allCells[enemyBulletPositionTwo].classList.remove('leaf') 
-      }
-      else {
-      enemyBulletPositionTwo += 11 
-      allCells[enemyBulletPositionTwo].classList.add('leaf')
-     if(allCells[enemyBulletPositionTwo].classList.contains('goodPokemon')) {
-          decreaseHealth()
-          updateHealth()
-          progressBarUpdate()
      }
     }
         }, 500)
       }
       }
-function levelThreeOpen() {
-function levelThreeShots() {
-   const bulletPositionThree = levelThreeEnemy[Math.floor(Math.random() * enemyArray.length)]  
-    let enemyBulletPositionThree = bulletPositionThree
-      if(allCells[bulletPositionThree].classList.contains('trainer')) {
-          setInterval(() => {
-      allCells[enemyBulletPositionThree].classList.remove('pokeball') 
-            if (bulletPositionThree >= 110) {
-     setTimeout(allCells[enemyBulletPositionThree].classList.add('pokeball'), 1000)
-    allCells[enemyBulletPositionThree].classList.remove('pokeball') 
-            }
-            else {
-      enemyBulletPositionThree += 11 
-      allCells[enemyBulletPositionThree].classList.add('pokeball')
-     if(allCells[enemyBulletPositionThree].classList.contains('goodPokemon')) {
-          decreaseHealth()
-          updateHealth()
-          progressBarUpdate()
-     }
-    }
-        }, 500)
-      }
+    }, 300)
+return
 }
-
-  levelThreeEnemy = [45, 46, 47, 48, 49, 50, 51, 52, 53]
-  addEnemy(levelThreeEnemy)
-  enemyDestroyed = []
-  addEnemy(enemyArray)
-  addEnemy(levelTwoEnemy)
-  setInterval(levelThreeShots, 300)
-  level = 3
-  healthPointsCount = 100
-  updateHealth()
-    levelTwo.play()
-  return
-}
-
-
-
-
-
-setInterval(enemyShots, 200)
 
 function fireShot() {
   shotPosition = index
   let temp = shotPosition
+  let pokemonHit = "hello"
   let shootFlame = setInterval(() => {
-      if(temp >= 0 && temp <= 120) {
+  if(temp >= 0 && temp <= 120) {
         allCells[temp].classList.remove('flame') 
         if (temp <= 10) {
           setTimeout(allCells[temp].classList.add('flame'), 1000)
           allCells[temp].classList.remove('flame')
         } 
         else {
-        temp -= 11
-        allCells[temp].classList.add('flame')
-            if(allCells[temp].classList.contains('trainer')) {
-              allCells[temp].classList.remove('trainer')
-               setTimeout((allCells[temp].classList.remove('flame')), 600)
+              temp -= 11
+              allCells[temp].classList.add('flame')
+              if(allCells[temp].classList.contains('trainer')) {
+              pokemonHit = 'trainer'
+              }
+              else if(allCells[temp].classList.contains('venasaur')) {
+                pokemonHit = 'venasaur'
+              }
+              else if(allCells[temp].classList.contains('gengar')) {
+                pokemonHit = 'gengar'
+              }
+              else if(allCells[temp].classList.contains('blastoise')) {
+                pokemonHit = 'blastoise'
+              }
+              else if(allCells[temp].classList.contains('dragonite')) {
+                pokemonHit = 'dragonite'
+              }
+              setInterval(() => {
+              if(allCells[temp].classList.contains(pokemonHit)) {
+              allCells[temp].classList.remove(pokemonHit)
+              setTimeout((allCells[temp].classList.remove('flame')), 600)
               updatePoints()
               updateScore() 
               clearInterval(shootFlame)
+              temp = false
             }
-             if(allCells[temp].classList.contains('venasaur')) {
-              allCells[temp].classList.remove('venasaur')
-               setTimeout((allCells[temp].classList.remove('flame')), 600)
-              updatePoints()
-              updateScore() 
-              clearInterval(shootFlame)
-          } 
-          if(allCells[temp].classList.contains('gengar')) {
-              allCells[temp].classList.remove('gengar')
-              updatePoints() 
-              updateScore() 
-              setTimeout((allCells[temp].classList.remove('flame')), 600)
-              clearInterval(shootFlame)
-          }
-          if(allCells[temp].classList.contains('blastoise')) {
-              allCells[temp].classList.remove('blastoise')
-              updatePoints()
-              updateScore() 
-              setTimeout((allCells[temp].classList.remove('flame')), 600)
-              clearInterval(shootFlame)
-          }
-           if(allCells[temp].classList.contains('dragonite')) {
-              allCells[temp].classList.remove('dragonite')
-              updatePoints()
-              updateScore() 
-              setTimeout((allCells[temp].classList.remove('flame')), 600)
-              clearInterval(shootFlame)
-          } 
-          if(allCells[temp].classList.contains('dragoniteflame') && allCells[temp].classList.contains('purple')) { 
-            allCells[temp].classList.remove('dragoniteflame')
-            allCells[temp].classList.remove('purpleball')
+          }, 300)
           }
         }
-      } 
     }, 60)
-    
+    return 
+}
+
+  setInterval(() => {
+setInterval(enemyShots('dragonite', 'dragoniteflame', enemyArray), 100)
+setInterval(enemyShots('blastoise', 'water', enemyArray), 200)
+setInterval(enemyShots('gengar', 'purpleball', enemyArray), 100)
+  }, 200)
+
+
+
+function updatePoints() {
+ playerPoints += 100
+ return
+}
+
+function updateScore() {
+   return score.innerHTML = "SCORE:" + playerPoints
+}
+
+function resetPoints() {
+  return playerPoints = 0
+}
+
+function healthPointsReset() {
+   healthPointsCount = 100
+   return
+}
+
+function updateHealth() {
+  healthPoints.innerHTML = "HP:" + healthPointsCount
+}
+
+function decreaseHealth() {
+  if (healthPointsCount >= 10) {
+  healthPointsCount -= 10
+  }
+  return
+}
+
+function levelTwoOpen() {
 
 }
 
-let playerPoints = 0
-let healthPointsCount = 100
+
+
+function levelThreeOpen() {
+  levelThreeEnemy = [45, 46, 47, 48, 49, 50, 51, 52, 53]
+  addEnemy(levelThreeEnemy)
+  addEnemy(enemyArray)
+  addEnemy(levelTwoEnemy)
+  setInterval(enemyShots('trainer', 'pokeball', levelThreeEnemy), 3000)
+  level = 3
+  healthPointsCount = 100
+  updateHealth()
+  levelThreeSound.play()
+  return
+}
+
 
 function updatePoints() {
  playerPoints += 100
@@ -336,6 +276,45 @@ function decreaseHealth() {
 }
 
 function startGame() {
+  let gameInterval = setInterval(() => {
+ if (healthPointsCount <= 0) {
+ startScreen.style.display ="none";
+  gridWrapper.style.display ="none";
+  endMessage.innerHTML ="GAME OVER!"
+  gameOverScreen.style.display ="flex"
+  removeEnemy(levelThreeEnemy)
+  removeEnemy(levelTwoEnemy)
+}
+if (playerPoints === 2800) {
+  levelTwoSound.play()
+  levelUpdate()
+  levelTwoOpen()
+  removeEnemy(enemyArray)
+enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+levelTwoEnemy = [34, 35, 36, 37, 38, 39, 40, 41, 42]
+addEnemy(levelTwoEnemy)
+addEnemy(enemyArray)
+setInterval(() => {
+setInterval(enemyShots('venasaur', 'leaf', levelTwoEnemy), 1000)}, 2000)
+  healthPointsCount = 100
+  updateHealth()
+  return
+}
+if (playerPoints === 6300 ||  playerPoints === 6400) {
+  levelThreeSound.play()
+  levelUpdate()
+  levelThreeOpen()
+}
+if (playerPoints >= 10800) {
+   startScreen.style.display ="none";
+  gridWrapper.style.display ="none";
+  endMessage.innerHTML = "YOU WIN!"
+  gameOverScreen.style.display ="flex"
+  youWin.play()
+  levelUpdate()
+  clearInterval(gameInterval)
+}
+}, 1000)
   playerPoints = 0
   healthPointsCount = 100
   updateHealth()
@@ -347,7 +326,6 @@ function startGame() {
   level = 1
   levelUpdate()
   enemyDestroyed = []
-  enemyArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
   addEnemy(enemyArray)
   console.log("Hello")
   gridWrapper.style.display ="flex";
@@ -395,47 +373,6 @@ function levelUpdate() {
   }
 levelAnnouncement.innerHTML = "Level:" + level
   return 
-}
-
-
-
-function endGame() {
- if (healthPointsCount <= 0) {
- startScreen.style.display ="none";
-  gridWrapper.style.display ="none";
-  endMessage.innerHTML ="GAME OVER!"
-  gameOverScreen.style.display ="flex"
-  removeEnemy(levelThreeEnemy)
-  removeEnemy(levelTwoEnemy)
-}
-if (playerPoints === 2700) {
-      levelTwoSound.play()
-      levelUpdate()
-  levelTwoOpen()
-}
-if (playerPoints === 6300) {
-  levelThreeSound.play()
-  levelUpdate()
-  levelThreeOpen()
-}
-if (playerPoints >= 10800) {
-   startScreen.style.display ="none";
-  gridWrapper.style.display ="none";
-  endMessage.innerHTML = "YOU WIN!"
-  gameOverScreen.style.display ="flex"
-  youWin.play()
-  levelUpdate()
-}
-}
-
-function levelTwoOpen() {
-  addEnemy(levelTwoEnemy)
-  enemyDestroyed = []
-  addEnemy(enemyArray)
-  setInterval(levelTwoShots, 2000)
-  healthPointsCount = 100
-  updateHealth()
-  return
 }
 
 
