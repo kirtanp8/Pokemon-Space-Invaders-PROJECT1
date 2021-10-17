@@ -145,7 +145,7 @@ header {
   color: white;
 }
 
-.grid div.goodPokemon {
+.grid div.charizard {
   background-image: url("https://img.pokemondb.net/sprites/black-white/anim/back-normal/charizard.gif");
   background-repeat: no-repeat;
   background-size: contain;
