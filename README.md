@@ -12,15 +12,10 @@ Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space
 
 # Technologies Used
 Html
-
 CSS
-
 JavaScript (ES6)
-
 Git
-
 GitHub
-
 Google Fonts
 
 # Controls 
