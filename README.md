@@ -11,12 +11,12 @@ By following the rules of Space Invaders, the objective is simple. Defend Chariz
 Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space-Invaders/
 
 # Technologies Used
-Html
-CSS
-JavaScript (ES6)
-Git
-GitHub
-Google Fonts
+* Html
+* CSS
+* JavaScript (ES6)
+* Git
+* GitHub
+* Google Fonts
 
 # Controls 
 Click the Start Button or press spacebar to start the game
