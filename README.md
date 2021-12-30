@@ -57,7 +57,7 @@ For the game, I needed to create moving elements:
 
 **Enemies** 
 
-The enemies are assigned their positions with a simple array
+The enemies are assigned their starting positions with index's on the grid
 ```
 enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 ```
@@ -73,5 +73,6 @@ function addEnemy(arr, pokemon) {
 }
 }
 ```
+the pokemon parameter allows me to switch the pokemon, e.g I could use a :blastoise: for level one and then use a :dragonite: for level two
 
 
