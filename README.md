@@ -73,6 +73,6 @@ function addEnemy(arr, pokemon) {
 }
 }
 ```
-the pokemon parameter allows me to switch the pokemon, e.g I could use a :blastoise: for level one and then use a :dragonite: for level two
+
 
 
