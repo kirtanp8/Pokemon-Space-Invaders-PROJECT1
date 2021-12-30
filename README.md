@@ -19,7 +19,7 @@ Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space
 * Google Fonts
 
 # Controls 
-* Use the Spacebar (⎵) to shoot
-* Left Arrow (<kbd>Left</kbd>) to Move Left
-* Use (:Right:) Right arrow to Move Right
+* Use the Spacebar to Shoot. 
+* Use the Right Arrow Key to Move Right.
+* USe the Left Arrow Key to Move Left.
 
