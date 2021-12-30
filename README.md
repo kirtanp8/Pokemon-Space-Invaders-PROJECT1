@@ -28,3 +28,20 @@ After choosing Pokemon Space Invaders as my game, I thought I should create a ch
 
 Below is a copy of my checklist attached (I unticked them all for the screenshot). 
 ![Screenshot 2021-12-30 at 17 01 38](https://user-images.githubusercontent.com/83728526/147785138-a77460e3-bdcf-4ba1-8779-dcdbfd1baa88.png)
+
+**Creating the Grid**
+```
+function createGrid() {
+  let gridArray = []
+    for (let i = 0; i < 121; i++) {
+      gridArray.push(i)
+  }
+  const grid = document.querySelector('.grid')
+
+  gridArray.forEach((className) => {
+    const newCell = document.createElement('div')
+    grid.appendChild(newCell)
+    newCell.classList.add(className)
+  })
+  }
+```
