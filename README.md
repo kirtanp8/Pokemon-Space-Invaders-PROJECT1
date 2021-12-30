@@ -1,5 +1,5 @@
-# Pokemon-Space-Invaders
- This is my first project from the General Assembly course
+# Project-1 Pokemon-Space-Invaders
+ Implementing my love for Pokemon :charizard: into the popular arcade game Space Invaders 👾
  
 # Overview
 For the first project of the SEI Course, the assigned task was to create a fully functioning browser-based game from a short list of arcade games which included Space Invaders.
