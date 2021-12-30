@@ -50,11 +50,13 @@ function createGrid() {
 ```
 
 **Movement**
+
 For the game, I needed to create moving elements:
 * A Shooter (Charizard) that can shoot bullets (flamethrower)
 * Multiple Enemies (Pokemon) to defeat whilst they move from side to side shooting bullets till they reach the bottom.
 
 **Enemies** 
+
 The enemies are assigned their positions with a simple array
 ```
 enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
