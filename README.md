@@ -19,7 +19,7 @@ Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space
 * Google Fonts
 
 # Controls 
-Click the Start Button or press spacebar to start the game
-Use the left ( left-arrow ) and right ( right-arrow ) arrow keys to move Tetrominoes left and right, respectively.
-Up ( up-arrow ) arrow key rotates the Tetromino in play
-Down ( down-arrow ) arrow key accelerates the Tetromino's downward motion
+* Use the spacebar to shoot
+* Left Arrow to Move Left
+* Use Right arrow to Move Right
+
