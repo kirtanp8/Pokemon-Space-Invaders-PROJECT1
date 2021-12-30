@@ -21,5 +21,5 @@ Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space
 # Controls 
 * Use the spacebar to shoot
 * Left Arrow to Move Left
-* Use Right arrow to Move Right
+* Use (:Right:) Right arrow to Move Right
 
