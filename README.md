@@ -30,6 +30,9 @@ Below is a copy of my checklist attached (I unticked them all for the screenshot
 ![Screenshot 2021-12-30 at 17 01 38](https://user-images.githubusercontent.com/83728526/147785138-a77460e3-bdcf-4ba1-8779-dcdbfd1baa88.png)
 
 **Creating the Grid**
+
+I used a for loop to create the grid which allowed me to avoid writing out 121 div elements in HTML and then I was able to allocate a size to each div using CSS. 
+
 ```
 function createGrid() {
   let gridArray = []
@@ -45,3 +48,17 @@ function createGrid() {
   })
   }
 ```
+
+**Movement**
+For the game, I needed to create moving elements:
+* A Shooter (Charizard) that can shoot bullets (flamethrower)
+* Multiple Enemies (Pokemon) to defeat whilst they move from side to side shooting bullets till they reach the bottom.
+
+**Enemies** 
+The enemies are assigned their positions with a simple array
+```
+enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+```
+
+
+
