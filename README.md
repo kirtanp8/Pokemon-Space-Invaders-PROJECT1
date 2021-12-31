@@ -164,11 +164,11 @@ I have added some notes to explain the reasoning for my code.
 function moveEnemy() {
   if (levelThreeReady) { **A Boolean value determining whether level two has finished**
   movePokemon = setInterval(() => {
-    isLeftEdge = enemyArray[0] % 11 === 0 **Checks which enemy is furthest to the left**
+    isLeftEdge = enemyArray[0] % 11 === 0 //Checks which enemy is furthest to the left
     isRightEdge = enemyArray[enemyArray.length - 1] % 11 === 10 **Checks which enemy is furthest to the Right**
-    removeEnemy(enemyArray, 'trainer') **Removes them from their current Position*
+    removeEnemy(enemyArray, 'trainer') //Removes them from their current Position
 
-**The below checks whether enemies are colliding with the border on the right**
+//The below checks whether enemies are colliding with the border on the right
   if (isRightEdge && goingRight) {
     for (let i = 0; i < enemyArray.length; i++) {
       enemyArray[i] += 11 + 1
@@ -177,7 +177,7 @@ function moveEnemy() {
        }
   }
 
-**The below checks whether enemies are colliding with the border on the left**
+//The below checks whether enemies are colliding with the border on the left**
   if (isLeftEdge && !goingRight) {
     for (let i = 0; i < enemyArray.length; i++) {
       enemyArray[i] += 11 - 1
@@ -186,13 +186,14 @@ function moveEnemy() {
        }
   }
  
-**This for loop below then checks if the enemies then collide with the **
+//The for loop below then moves the enemies to the next block respictively
   for (let i = 0; i < enemyArray.length; i++) {
     enemyArray[i] += movement
   }
 
     addEnemy(enemyArray, 'trainer')
 
+// If the Enemy reaches the bottom row, the below function ends the game and stops the movement.
   for (let i = 0; i < enemyArray.length; i++) {
     if (enemyArray[i] >= 110) {
     clearInterval(movePokemon)
