@@ -75,7 +75,7 @@ function addEnemy(arr, pokemon) {
 }
 }
 ```
-**Shooter-Movement**
+**Shooter Movement**
 
 When adding and testing the function below, my game was starting to feel like an actual game as I could move the Shooter from side to side and then of course the `fireShot()` function allowed me to shoot but it was implemented in a little later on.
 
@@ -98,3 +98,61 @@ function handleKeyUp(event) {
  document.addEventListener('keyup', handleKeyUp)
 
 ```
+
+**Shooting Bullets + Collision Dection**
+
+Writing the below function was definitley a fun problem to solve. I needed a function that could move bullets up towards the enemy and then remove them if they are hit by the bullet. To do this, I first implemented a `setInterval` method which allowed me to control the speed of the bullets movement and then every millisecond each bullet would then move vertically up grid by deducting the bullets starting position by `-= 11` and this is because each row has eleven blocks.
+
+Once the bullet is in enemy territory and hits one I used `allCells[temp].classList.remove(pokemonHit)` to remove the pokemon from the grid, increase the players points but only after finding out which pokemon has been hit through an `if` statement. The reason I needed to do this was because my game had **3 Levels** with each level being a different pokemon to hit. 
+
+```
+function fireShot() {
+  shotPosition = index
+  let temp = shotPosition
+  let pokemonHit = ''
+  let shootFlame = setInterval(() => {
+  if(temp >= 0 && temp <= 120) {
+    allCells[temp].classList.remove('flame') 
+    if (temp <= 10) {
+      setTimeout(allCells[temp].classList.add('flame'), 1000)
+      allCells[temp].classList.remove('flame')
+    } 
+    else {
+      temp -= 11
+      allCells[temp].classList.add('flame')
+      if(allCells[temp].classList.contains('trainer')) {
+        pokemonHit = 'trainer'
+      }
+      else if(allCells[temp].classList.contains('venasaur')) {
+        pokemonHit = 'venasaur'
+      }
+      else if(allCells[temp].classList.contains('gengar')) {
+        pokemonHit = 'gengar'
+      }
+      else if(allCells[temp].classList.contains('blastoise')) {
+        pokemonHit = 'blastoise'
+      }
+      else if(allCells[temp].classList.contains('dragonite')) {
+        pokemonHit = 'dragonite'
+      }
+      setInterval(() => {
+      if(allCells[temp].classList.contains(pokemonHit)) {
+        let defeatedEnemy = enemyArray.indexOf(temp)
+        enemyDestroyed.push(defeatedEnemy + 1)
+        allCells[temp].classList.remove(pokemonHit)
+        setTimeout((allCells[temp].classList.remove('flame')), 600)
+        updatePoints()
+        updateScore() 
+        clearInterval(shootFlame)
+        temp = false
+        }
+        }, 100)
+        }
+      }
+    }, 100)
+    return 
+  }
+```
+
+
+
