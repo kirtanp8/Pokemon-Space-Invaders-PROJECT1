@@ -74,4 +74,24 @@ function addEnemy(arr, pokemon) {
 ```
 **Shooter-Movement**
 
+When adding and testing the function below, my game was starting to feel like an actual game as I could move the Shooter from side to side and then of course the `fireShot()` function 
 
+```
+function handleKeyUp(event) {
+  const key = event.keyCode
+  if (key === 39 && index !== 120) {
+  removeCharizard(index)
+    index++
+  } else if (key === 37 && index !== 110) {
+  removeCharizard(index)
+    index--
+  } else if (key === 32) {
+    fireShot()
+  } else {
+    return 
+  }
+  addCharizard(index)
+  }
+ document.addEventListener('keyup', handleKeyUp)
+
+```
