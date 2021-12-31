@@ -24,6 +24,9 @@ Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space
 * USe the Left Arrow Key to Move Left.
 
 # Development Process
+
+**Planning** 
+
 After choosing Pokemon Space Invaders as my game, I thought I should create a checklist using Trello having used it in a workplace to plan day to day tasks.
 
 Below is a copy of my checklist attached (I unticked them all for the screenshot). 
