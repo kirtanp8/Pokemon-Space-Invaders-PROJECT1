@@ -208,12 +208,12 @@ function moveEnemy() {
   }
   }
   }, speed)
-  if (!levelThreeReady) {
-  clearInterval(movePokemon)
-  clearInterval(trainerShoot)
-  removeEnemy(enemyArray, 'trainer')
-  }
-}
+   if (!levelThreeReady) {
+    clearInterval(movePokemon)
+    clearInterval(trainerShoot)
+    removeEnemy(enemyArray, 'trainer')
+   }
+ }
 }
 
 ```
