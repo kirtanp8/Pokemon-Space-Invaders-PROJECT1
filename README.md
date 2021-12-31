@@ -103,7 +103,7 @@ function handleKeyUp(event) {
 
 Writing the below function was definitley a fun problem to solve. I needed a function that could move bullets up towards the enemy and then remove them if they are hit by the bullet. To do this, I first implemented a `setInterval` method which allowed me to control the speed of the bullets movement and then every millisecond each bullet would then move vertically up grid by deducting the bullets starting position by `-= 11` and this is because each row has eleven blocks.
 
-Once the bullet is in enemy territory and hits one I used `allCells[temp].classList.remove(pokemonHit)` to remove the pokemon from the grid, increase the players points but only after finding out which pokemon has been hit through an `if` statement. The reason I needed to do this was because my game had **3 Levels** with each level being a different pokemon to hit. 
+Once the bullet is in enemy territory and hits one I used `allCells[temp].classList.remove(pokemonHit)` to remove the pokemon from the grid, increase the players points but only after finding out which pokemon has been hit through an `if` statement. The reason I needed to do this was because my game had **3 Levels** with each level having a different pokemon to hit. 
 
 ```
 function fireShot() {
