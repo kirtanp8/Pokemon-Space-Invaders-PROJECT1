@@ -235,9 +235,11 @@ However, the biggest win has to be improving my JavaScript knowledge, I've been 
 
 # Future Additions
 
-**Make it so that enemies move from side to side in Level One and Level Two**
-**Create a LeaderBoard using local storage**
+* Make it so that enemies move from side to side in Level One and Level Two**
+* Create a LeaderBoard using local storage
 
 # Key Learning Points 
 
-Debugging: throughout the time of me making the project and making it flow, I was coming accross hurdles such as bullets being thrown when they were not meant to or bullets still travelling once they have fallen off the grid, I was able to prevent this using `clearInterval`. However, overcoming small bugs like this were a big win for me and probably gave me a small taste of what is to come throughout my career.
+* Debugging: throughout the time of me making the project and making it flow, I was coming accross hurdles such as bullets being thrown when they were not meant to or bullets still travelling once they have fallen off the grid, I was able to prevent this using `clearInterval`. However, overcoming small bugs like this were a big win for me and probably gave me a small taste of what is to come throughout my career.
+
+* Pseudocode: Put more time into planning and you can save yourself a lot more time.  
