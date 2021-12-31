@@ -154,5 +154,66 @@ function fireShot() {
   }
 ```
 
+**Moving the Enemies**
 
+I managed to get the enemies to move but prior to the code below I had a massive switch statement which didn't look appealing and was an easy way out of solving the problem. The enemies only move when Level 3 commences, I did this so Level One and Level Two would be much easier.
+
+I have added some notes to explain the reasoning for my code. 
+
+```
+function moveEnemy() {
+  if (levelThreeReady) { **A Boolean value determining whether level two has finished**
+  movePokemon = setInterval(() => {
+    isLeftEdge = enemyArray[0] % 11 === 0 **Checks which enemy is furthest to the left**
+    isRightEdge = enemyArray[enemyArray.length - 1] % 11 === 10 **Checks which enemy is furthest to the Right**
+    removeEnemy(enemyArray, 'trainer') **Removes them from their current Position*
+
+**The below checks whether enemies are colliding with the border on the right**
+  if (isRightEdge && goingRight) {
+    for (let i = 0; i < enemyArray.length; i++) {
+      enemyArray[i] += 11 + 1
+      movement = -1
+    goingRight = false
+       }
+  }
+
+**The below checks whether enemies are colliding with the border on the left**
+  if (isLeftEdge && !goingRight) {
+    for (let i = 0; i < enemyArray.length; i++) {
+      enemyArray[i] += 11 - 1
+      movement = 1
+    goingRight = true
+       }
+  }
+ 
+**This for loop below then checks if the enemies then collide with the **
+  for (let i = 0; i < enemyArray.length; i++) {
+    enemyArray[i] += movement
+  }
+
+    addEnemy(enemyArray, 'trainer')
+
+  for (let i = 0; i < enemyArray.length; i++) {
+    if (enemyArray[i] >= 110) {
+    clearInterval(movePokemon)
+    clearInterval(moveTrainer)
+    gameOver()
+    removeEnemy(enemyArray, 'trainer')
+
+    if (playerPoints === 8100 || playerPoints <= 5300) {
+      clearInterval(movePokemon)
+      removeEnemy(enemyArray, 'trainer')
+    }
+  }
+  }
+  }, speed)
+  if (!levelThreeReady) {
+  clearInterval(movePokemon)
+  clearInterval(trainerShoot)
+  removeEnemy(enemyArray, 'trainer')
+  }
+}
+}
+
+```
 
