@@ -62,8 +62,7 @@ The enemies are assigned their starting positions with index's on the grid
 enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 ```
 
-The enemies are then added with the following function: 
-
+With the below function, I can then add any pokemon with the use of the second parameter in their starting positions. 
 ```
 function addEnemy(arr, pokemon) {
   for (let i = 0; i < arr.length; i++) {
@@ -73,6 +72,6 @@ function addEnemy(arr, pokemon) {
 }
 }
 ```
-
+**Shooter-Movement**
 
 
