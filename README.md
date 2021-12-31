@@ -77,7 +77,7 @@ function addEnemy(arr, pokemon) {
 ```
 **Shooter-Movement**
 
-When adding and testing the function below, my game was starting to feel like an actual game as I could move the Shooter from side to side and then of course the `fireShot()` function allowed me to shoot but it was implemented in a little later.
+When adding and testing the function below, my game was starting to feel like an actual game as I could move the Shooter from side to side and then of course the `fireShot()` function allowed me to shoot but it was implemented in a little later on.
 
 ```
 function handleKeyUp(event) {
