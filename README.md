@@ -162,7 +162,7 @@ I have added some notes to explain the reasoning for my code.
 
 ```
 function moveEnemy() {
-  if (levelThreeReady) { **A Boolean value determining whether level two has finished**
+  if (levelThreeReady) { //A Boolean value determining whether level two has finished**
   movePokemon = setInterval(() => {
     isLeftEdge = enemyArray[0] % 11 === 0 //Checks which enemy is furthest to the left
     isRightEdge = enemyArray[enemyArray.length - 1] % 11 === 10 //Checks which enemy is furthest to the Right**
