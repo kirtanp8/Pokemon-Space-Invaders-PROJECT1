@@ -165,7 +165,7 @@ function moveEnemy() {
   if (levelThreeReady) { **A Boolean value determining whether level two has finished**
   movePokemon = setInterval(() => {
     isLeftEdge = enemyArray[0] % 11 === 0 //Checks which enemy is furthest to the left
-    isRightEdge = enemyArray[enemyArray.length - 1] % 11 === 10 **Checks which enemy is furthest to the Right**
+    isRightEdge = enemyArray[enemyArray.length - 1] % 11 === 10 //Checks which enemy is furthest to the Right**
     removeEnemy(enemyArray, 'trainer') //Removes them from their current Position
 
 //The below checks whether enemies are colliding with the border on the right
