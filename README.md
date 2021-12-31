@@ -51,7 +51,7 @@ function createGrid() {
 
 **Movement**
 
-For the game, I needed to create moving elements:
+For the game, I needed to create moving elements:__
 * A Shooter (Charizard) that can shoot bullets (flamethrower)
 * Multiple Enemies (Pokemon) to defeat whilst they move from side to side shooting bullets till they reach the bottom.
 
