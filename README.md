@@ -217,4 +217,27 @@ function moveEnemy() {
 }
 
 ```
+# Styling
 
+I went for a simple design, but it looks really good because of the game themed font I found + the use of Pokemon gifs which move and make the game more visually appealing. On top of this, I implemented some audio clips which I recorded myself, I added one there which represents my silly sense of humour (not to be taken seriously of course) but I was aiming to do my best impression of the EA Sports intro but of course make it relevant to my game. 
+
+# Challenges
+
+Getting the game to restart without using the `window.location.false(reload)` was a challenge to solve, however this was created by myself through a lack of thorough planning, I had to make a few re-arrangements in my code and chop and change things around, and I realised I could of saved myself sometime had I spent more time planning my functions.
+
+# Wins
+
+Creating a game with three levels is something I can be proud of, I shared my game with my friends on social media and got a great amount of attention (more than I usually get) which was a good feeling. 
+
+Solving problems and bugs were a massive win for me too! It's one of the reasons I joined the course in the first place, to get me ready for industry practice.
+
+However, the biggest win has to be improving my JavaScript knowledge, I've been coding since March 2020 and hadn't relly come accross much of DOM Manipulation, learning how to create the grid using JavaScript, moving a character with keyboard buttons and learning about collision detection.
+
+# Future Additions
+
+**Make it so that enemies move from side to side in Level One and Level Two**
+**Create a LeaderBoard using local storage**
+
+# Key Learning Points 
+
+**Debugging: throughout the time of me making the project and making it flow, I was coming accross hurdles such as bullets being thrown when they were not meant to or bullets still travelling once they have fallen off the grid, I was able to prevent this using `clearInterval`. However, overcoming small bugs like this were a big win for me and probably gave me a small taste of what is to come throughout my career.** 
