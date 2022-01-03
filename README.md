@@ -60,7 +60,7 @@ For the game, I needed to create moving elements:
 
 **Enemies** 
 
-The enemies are assigned their starting positions with index's on the grid
+The enemies are assigned their starting positions with indexes on the grid
 ```
 enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 ```
@@ -230,7 +230,7 @@ Getting the game to restart without using the `window.location.false(reload)` wa
 
 * Solving problems and bugs were a massive win for me too! It's one of the reasons I joined the course in the first place, to get me ready for industry practice.
 * However, the biggest win has to be improving my JavaScript knowledge, I've been coding since March 2020 and hadn't relly come accross much of DOM Manipulation, learning how to create the grid using JavaScript, moving a character with keyboard buttons and learning about collision detection.
-* Creating a game with three levels is something I can be proud of, I shared my game with my friends on social media and got a great amount of attention (more than I usually get) which was a good feeling.
+* Creating a game with three levels is something I can be proud of and I also shared my game with my friends on social media and recieved a great amount of attention (more than I usually get) which was a good feeling.
 
 # Future Additions
 
