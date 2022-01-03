@@ -27,7 +27,7 @@ Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space
 
 **Planning** 
 
-After choosing Pokemon Space Invaders as my game, I thought I should create a checklist using Trello having used it in a workplace to plan day to day tasks.
+After choosing Pokemon Space Invaders as my game, I thought I should create a checklist using Trello having used it in a workplace to plan day to day tasks. I must say that there is something rather satisfying about ticking off boxes :laughing:. 
 
 Below is a copy of my checklist attached (I unticked them all for the screenshot). 
 ![Screenshot 2021-12-30 at 17 01 38](https://user-images.githubusercontent.com/83728526/147785138-a77460e3-bdcf-4ba1-8779-dcdbfd1baa88.png)
@@ -55,7 +55,7 @@ function createGrid() {
 **Movement**
 
 For the game, I needed to create moving elements:  
-* A Shooter (Charizard) that can shoot bullets (flamethrower)
+* A Shooter (Charizard) that can shoot bullets (flamethrower) :fire:
 * Multiple Enemies (Pokemon) to defeat whilst they move from side to side shooting bullets till they reach the bottom.
 
 **Enemies** 
@@ -66,6 +66,7 @@ enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23
 ```
 
 With the below function, I can then add any pokemon with the use of the second parameter in their starting positions. 
+
 ```
 function addEnemy(arr, pokemon) {
   for (let i = 0; i < arr.length; i++) {
@@ -101,9 +102,9 @@ function handleKeyUp(event) {
 
 **Shooting Bullets + Collision Dection**
 
-Writing the below function was definitley a fun problem to solve. I needed a function that could move bullets up towards the enemy and then remove them if they are hit by the bullet. To do this, I first implemented a `setInterval` method which allowed me to control the speed of the bullets movement and then every millisecond each bullet would then move vertically up grid by deducting the bullets starting position by `-= 11` and this is because each row has eleven blocks.
+Writing the below function was definitley a fun problem to solve. I needed a function that could move bullets up towards the enemy and then remove them if they are hit by the bullet. To do this, I first implemented a `setInterval` method which allowed me to control the speed of the bullets movement and then every millisecond each bullet would then move vertically up the grid and I did this by deducting the bullets starting position by `-= 11` because each row is eleven blocks wide meaning block `88` would be below block `77`.
 
-Once the bullet is in enemy territory and hits one I used `allCells[temp].classList.remove(pokemonHit)` to remove the pokemon from the grid, increase the players points but only after finding out which pokemon has been hit through an `if` statement. The reason I needed to do this was because my game had **3 Levels** with each level having a different pokemon to hit. 
+Once the bullet is in enemy territory and hits one, I used `allCells[temp].classList.remove(pokemonHit)` to remove the pokemon from the grid, increase the players points using a function and function declaration but only after finding out which pokemon has been hit through an `if` statement. The reason I needed to do this was because my game had **3 Levels** with each level having a different pokemon to hit. 
 
 ```
 function fireShot() {
@@ -219,27 +220,24 @@ function moveEnemy() {
 ```
 # Styling
 
-I went for a simple design, but it looks really good because of the game themed font I found + the use of Pokemon gifs which move and make the game more visually appealing. On top of this, I implemented some audio clips which I recorded myself, I added one there which represents my silly sense of humour (not to be taken seriously of course) but I was aiming to do my best impression of the EA Sports intro but of course make it relevant to my game. 
+I went for a simple design, but it looks really good because of the game themed font I found + the use of Pokemon gifs which move and make the game more visually appealing. On top of this, I implemented some audio clips which I recorded myself, I added one there which represents my silly sense of humour (not to be taken seriously of course) but I was aiming to do my best impression of the EA Sports intro but of course make it relevant to my game at the same time. 
 
 # Challenges
 
-Getting the game to restart without using the `window.location.false(reload)` was a challenge to solve, however this was created by myself through a lack of thorough planning, I had to make a few re-arrangements in my code and chop and change things around, and I realised I could of saved myself sometime had I spent more time planning my functions.
+Getting the game to restart without using the `window.location.false(reload)` was a challenge to solve, however this was created by myself through a lack of thorough planning, I had to make a few re-arrangements in my code and chop and change things around, and I realised I could of saved myself sometime had I spent more time planning my functions and writing better Pseudocode.
 
 # Wins
 
-Creating a game with three levels is something I can be proud of, I shared my game with my friends on social media and got a great amount of attention (more than I usually get) which was a good feeling. 
-
-Solving problems and bugs were a massive win for me too! It's one of the reasons I joined the course in the first place, to get me ready for industry practice.
-
-However, the biggest win has to be improving my JavaScript knowledge, I've been coding since March 2020 and hadn't relly come accross much of DOM Manipulation, learning how to create the grid using JavaScript, moving a character with keyboard buttons and learning about collision detection.
+* Solving problems and bugs were a massive win for me too! It's one of the reasons I joined the course in the first place, to get me ready for industry practice.
+* However, the biggest win has to be improving my JavaScript knowledge, I've been coding since March 2020 and hadn't relly come accross much of DOM Manipulation, learning how to create the grid using JavaScript, moving a character with keyboard buttons and learning about collision detection.
+* Creating a game with three levels is something I can be proud of, I shared my game with my friends on social media and got a great amount of attention (more than I usually get) which was a good feeling.
 
 # Future Additions
 
-* Make it so that enemies move from side to side in Level One and Level Two**
+* Add Levels 4 and 5**
 * Create a LeaderBoard using local storage
 
 # Key Learning Points 
 
 * Debugging: throughout the time of me making the project and making it flow, I was coming accross hurdles such as bullets being thrown when they were not meant to or bullets still travelling once they have fallen off the grid, I was able to prevent this using `clearInterval`. However, overcoming small bugs like this were a big win for me and probably gave me a small taste of what is to come throughout my career.
-
 * Pseudocode: Put more time into planning and you can save yourself a lot more time.  
