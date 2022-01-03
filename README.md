@@ -229,7 +229,7 @@ Getting the game to restart without using the `window.location.false(reload)` wa
 # Wins
 
 * Solving problems and bugs was a massive win for me too! It's one of the reasons I joined the course in the first place, to get me ready for industry practice.
-* However, the biggest win has to be improving my JavaScript knowledge. I've been coding since March 2020 and hadn't relly come across much of DOM Manipulation, learning how to create the grid using JavaScript, moving a character with keyboard buttons and learning about collision detection.
+* However, the biggest win has to be improving my JavaScript knowledge. I've been coding since March 2020 and hadn't relly come across much DOM Manipulation, learning how to create the grid using JavaScript, moving a character with keyboard buttons and learning about collision detection.
 * Creating a game with three levels is something I can be proud of. I also shared my game with my friends on social media and recieved a great amount of attention (more than I usually get) which was a good feeling.
 
 # Future Additions
