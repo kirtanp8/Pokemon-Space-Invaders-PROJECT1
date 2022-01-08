@@ -60,7 +60,7 @@ For the game, I needed to create moving elements:
 
 **Enemies** 
 
-The enemies are assigned their starting positions with indexes on the grid
+The enemies are assigned their starting positions with indexes on the grid.
 ```
 enemyArray =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 ```
@@ -100,9 +100,9 @@ function handleKeyUp(event) {
 
 ```
 
-**Shooting Bullets + Collision Dection**
+**Shooting Bullets + Collision Detection**
 
-Writing the below function was definitley a fun problem to solve. I needed a function that could move bullets up towards the enemy and then remove them if they are hit by the bullet. To do this, I first implemented a `setInterval` method which allowed me to control the speed of the bullets movement and then every millisecond each bullet would then move vertically up the grid and I did this by deducting the bullets starting position by `-= 11` because each row is eleven blocks wide meaning block `88` would be below block `77`.
+Writing the below function was definitely a fun problem to solve. I needed a function that could move bullets up towards the enemy and then remove them if they are hit by the bullet. To do this, I first implemented a `setInterval` method which allowed me to control the speed of the bullets movement and then every millisecond each bullet would then move vertically up the grid and I did this by deducting the bullets starting position by `-= 11` because each row is eleven blocks wide meaning block `88` would be below block `77`.
 
 Once the bullet is in enemy territory and hits one, I used `allCells[temp].classList.remove(pokemonHit)` to remove the pokemon from the grid, increase the players points using a function and function declaration but only after finding out which pokemon has been hit through an `if` statement. The reason I needed to do this was because my game had **3 Levels** with each level having a different pokemon to hit. 
 
@@ -239,5 +239,5 @@ Getting the game to restart without using the `window.location.false(reload)` wa
 
 # Key Learning Points 
 
-* Debugging: throughout the time of me making the project and making it flow, I was coming accross hurdles such as bullets being thrown when they were not meant to or bullets still travelling once they have fallen off the grid, I was able to prevent this using `clearInterval`. However, overcoming small bugs like this were a big win for me and probably gave me a small taste of what is to come throughout my career.
+* Debugging: throughout the time of me making the project and making it flow, I was coming accross hurdles such as bullets being thrown when they were not meant to or bullets still traveling once they have fallen off the grid, I was able to prevent this using `clearInterval`. However, overcoming small bugs like this were a big win for me and probably gave me a small taste of what is to come throughout my career.
 * Pseudocode: Put more time into planning and you can save yourself a lot more time.  
