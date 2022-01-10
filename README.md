@@ -8,7 +8,7 @@ I opted to go for Space Invaders and include my own twist which of course was Po
 
 By following the rules of Space Invaders, the objective is simple. Defend Charizard by defeating Blastoise, Dragonite and his Trainer 🙃 (just me being funny). 
 
-Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space-Invaders/
+Feel free to enjoy playing the game at: https://kirtanp8.github.io/Pokemon-Space-Invaders-PROJECT1/
 
 # Technologies Used
 * HTML
