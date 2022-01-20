@@ -1,6 +1,8 @@
 # Project-1 Pokemon-Space-Invaders
  Implementing my love for Pokemon into the popular arcade game Space Invaders 👾
- 
+
+https://user-images.githubusercontent.com/83728526/150243985-af37f106-c237-45ed-9dd6-b1e3609e969c.mp4
+
 # Overview
 For the first project of the SEI Course, the assigned task was to create a fully functioning browser-based game from a short list of arcade games which included Space Invaders.
 
